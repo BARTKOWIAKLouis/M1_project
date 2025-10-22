@@ -1,6 +1,13 @@
 # M1_project
 
-# Répartition des tâches :
+## Group :
+ - Bartkowiak Louis
+ - Rouzé Capucine
+ - Obert Quentin
+ - Cadilhac Alexandre
+ - Sato Rintaro
+
+## Tasks :
 
 |
 |
