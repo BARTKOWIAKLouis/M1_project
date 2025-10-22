@@ -1,0 +1,16 @@
+import {ClientId} from './clients.entity';
+
+export type ClientModel = {
+    id: ClientId;
+    firstName: string;
+    lastName: string;
+    email?: string;
+    picture?: string;
+};
+
+export type CreateClientModel = {
+    firstName: string;
+    lastName: string;
+    email?: string;
+    picture?: string;
+};
