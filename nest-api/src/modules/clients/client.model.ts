@@ -14,3 +14,5 @@ export type CreateClientModel = {
     email?: string;
     picture?: string;
 };
+
+export type UpdateClientModel = Partial<CreateClientModel>;
