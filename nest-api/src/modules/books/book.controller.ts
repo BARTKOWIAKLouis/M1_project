@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateBookDto, GetBooksDto, UpdateBookDto } from './book.dto';
-import { GetBooksModel } from './book.model';
+import { BookModel, GetBooksModel } from './book.model';
 import { BookService } from './book.service';
 
 @Controller('books')
@@ -36,7 +36,7 @@ export class BookController {
   }
 
   @Get(':id')
-  public async getBook(@Param('id') id: string) {
+  public async getBook(@Param('id') id: string): Promise<BookModel | undefined> {
     return this.bookService.getBookById(id);
   }
 

@@ -6,15 +6,22 @@ import {
   UpdateBookModel,
 } from './book.model';
 import { BookRepository } from './book.repository';
+import { SalesRepository } from '../sales/sales.repository';
 
 @Injectable()
 export class BookService {
-  constructor(private readonly bookRepository: BookRepository) {}
+  constructor(private readonly bookRepository: BookRepository, private readonly salesRepository: SalesRepository) {}
 
-  public async getAllBooks(
-    input?: FilterBooksModel,
-  ): Promise<[BookModel[], number]> {
-    return this.bookRepository.getAllBooks(input);
+  public async getAllBooks(input?: FilterBooksModel,): Promise<[{Books : BookModel, Sales_count: number}[], number]> {
+    const [books, totalCount] = await this.bookRepository.getAllBooks(input);
+    //Map through each book to get their sales count
+    const booksWithSalesCounts = await Promise.all(
+      books.map(async (book) => {
+        const [ , salesCount ] = await this.salesRepository.getBookSales(book.id);
+        return {Books :book, Sales_count :salesCount};
+      }),
+    );
+    return [booksWithSalesCounts, totalCount];
   }
 
   public async getBookById(id: string): Promise<BookModel | undefined> {

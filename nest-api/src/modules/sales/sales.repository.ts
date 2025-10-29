@@ -3,8 +3,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 import {CreateSaleModel, SaleModel} from "./sales.model";
 import { Repository } from "typeorm";
 import { SaleEntity } from "./sales.entity";
-import { BookEntity, BookId } from "../books/entities/book.entity";
+import { BookEntity, BookId} from "../books/entities/book.entity";
 import { ClientEntity, ClientId } from "../clients/clients.entity";
+import { BookModel } from "../books/book.model";
+import { ClientModel } from "../clients/client.model";
 
 @Injectable()
 export class SalesRepository {
@@ -33,6 +35,25 @@ export class SalesRepository {
 
         return this.saleRepository.save(this.saleRepository.create(sale));
     }
-
     
+    public async getClientPurchases(id: string): Promise<[BookModel[], number]>{
+        // Get all sales from the sales repository where clientId matches the given id
+        const [sales, totalCount] = await this.saleRepository.findAndCount({
+            where: { clientId: id as ClientId },
+            relations: { book: true },
+        });
+        // Extract the books from the sales
+        const books = sales.map((sale) => sale.book);
+        return ( [books, totalCount] );
+    }
+    
+    public async getBookSales(id: string): Promise<[ClientModel[],number]>{
+        const [sales, totalCount] = await this.saleRepository.findAndCount({
+            where: { bookId: id as BookId },
+            relations: { client: true },
+        });
+        // Extract the clients from the sales
+        const clients = sales.map((sale) => sale.client);
+        return ( [clients, totalCount] );
+    }
 }
