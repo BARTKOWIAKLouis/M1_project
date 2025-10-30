@@ -9,7 +9,7 @@ export const useBookProvider = () => {
     axios
       .get('http://localhost:3000/books')
       .then(data => {
-        setBooks(data.data.data)
+        setBooks(data.data.data )
       })
       .catch(err => console.error(err))
   }
