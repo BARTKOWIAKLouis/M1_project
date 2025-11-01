@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { In, Repository } from "typeorm";
 import { ClientEntity, ClientId } from "./clients.entity";
-import { ClientModel, UpdateClientModel, CreateClientModel } from "./client.model";
+import { ClientModel, UpdateClientModel, CreateClientModel, FilterClientModel} from "./client.model";
 import { BookModel } from "../books/book.model";
 import { SaleEntity } from "../sales/sales.entity";
 
@@ -15,14 +15,24 @@ export class ClientRepository {
         private readonly saleRepository: Repository<SaleEntity>,
     ) {}
 
-    public async getAllClients(): Promise<[ClientModel[], number]> {
-        return this.clientRepository.findAndCount();
+    public async getAllClients(input?: FilterClientModel): Promise<[ClientModel[], number]> {
+        return this.clientRepository.findAndCount({take: input?.limit, skip: input?.offset, order: input?.sort});
     }
 
     public async createClient(client: CreateClientModel): Promise<ClientModel> {
         return this.clientRepository.save(this.clientRepository.create(client));
     }
 
+    public async findClient(id: string) : Promise<ClientModel | undefined> {
+        const client = await this.clientRepository.findOne({where: {id: id as ClientId},});
+
+        if (!client) {
+            return undefined;
+        }
+
+        return client;
+    }
+    
     public async updateClient( id: string,client: UpdateClientModel,
     ): Promise<ClientModel | undefined>{
         const oldclient = await this.clientRepository.findOne({where: {id: id as ClientId},});

@@ -20,7 +20,7 @@ export class BookController {
   async getBooks(@Query() input: GetBooksDto): Promise<GetBooksModel> {
     const [property, direction] = input.sort
       ? input.sort.split(',')
-      : ['title', 'ASC'];
+      : ['title', 'ASC']; //If input not defined, default sort value is by title in Ascendant order
 
     const [books, totalCount] = await this.bookService.getAllBooks({
       ...input,

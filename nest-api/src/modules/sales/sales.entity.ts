@@ -32,4 +32,7 @@ export class SaleEntity extends BaseEntity {
     @ManyToOne(() => BookEntity, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'book_id' })
     book: BookEntity;
+
+    @Column({ name: 'date', type: 'varchar'})
+    date: string;
 }
