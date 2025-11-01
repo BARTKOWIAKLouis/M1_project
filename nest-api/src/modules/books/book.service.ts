@@ -25,7 +25,7 @@ export class BookService {
   }
 
   public async getBookById(id: string): Promise<BookModel | undefined> {
-    return this.bookRepository.getBookById(id);
+    return this.bookRepository.findBook(id);
   }
 
   public async createBook(book: CreateBookModel): Promise<BookModel> {
@@ -36,11 +36,6 @@ export class BookService {
     id: string,
     book: UpdateBookModel,
   ): Promise<BookModel | undefined> {
-    const oldBook = await this.getBookById(id);
-    if (!oldBook) {
-      return undefined;
-    }
-
     return this.bookRepository.updateBook(id, book);
   }
 

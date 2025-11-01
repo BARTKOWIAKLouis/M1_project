@@ -22,3 +22,8 @@ export type FilterClientModel = {
       offset: number;
       sort?: Partial<Record<keyof ClientModel, 'ASC' | 'DESC'>>;
 }
+
+export type GetClientModel= {
+    totalCount: number;
+    data: {client: ClientModel, purchaseCount: number}[];
+}

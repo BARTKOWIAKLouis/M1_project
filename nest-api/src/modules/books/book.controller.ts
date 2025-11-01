@@ -22,7 +22,7 @@ export class BookController {
       ? input.sort.split(',')
       : ['title', 'ASC']; //If input not defined, default sort value is by title in Ascendant order
 
-    const [books, totalCount] = await this.bookService.getAllBooks({
+    const [booksWithSales, totalCount] = await this.bookService.getAllBooks({
       ...input,
       sort: {
         [property]: direction,
@@ -30,7 +30,7 @@ export class BookController {
     });
 
     return {
-      data: books,
+      data: booksWithSales,
       totalCount,
     };
   }

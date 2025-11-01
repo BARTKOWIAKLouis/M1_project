@@ -1,6 +1,6 @@
 import{Body, Controller, Delete, Get, Param, Patch, Post, Query,} from "@nestjs/common";
 import { CreateClientDto, UpdateClientDto, GetClientDto} from "./client.dto";
-import { ClientModel } from "./client.model";
+import { ClientModel, GetClientModel } from "./client.model";
 import { ClientService } from "./client.service";
 import { BookModel } from "../books/book.model";
 
@@ -9,13 +9,13 @@ export class ClientController {
     constructor(private readonly clientService: ClientService) {}
 
     @Get()
-    async getAllClients(@Query() input:GetClientDto): Promise<{data: {client : ClientModel, purchaseCount : number}[], totalCount : number}> {
+    async getAllClients(@Query() input:GetClientDto): Promise<GetClientModel> {
         const [property, direction] = input.sort? input.sort.split(',') : ['title', 'ASC']; 
         
-        const [clientsWithPurchaseCounts, totalCount] = await this.clientService.getAllClients({...input, sort :{[property]: direction,}});
+        const [clientsWithPurchase, totalCount] = await this.clientService.getAllClients({...input, sort :{[property]: direction,}});
         
         return {
-            data: clientsWithPurchaseCounts,
+            data: clientsWithPurchase,
             totalCount,
         };
     }
