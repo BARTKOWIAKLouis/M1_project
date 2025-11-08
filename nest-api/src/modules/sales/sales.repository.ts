@@ -13,7 +13,9 @@ export class SalesRepository {
     constructor(
         @InjectRepository(SaleEntity)
         private readonly saleRepository: Repository<SaleEntity>,
+        @InjectRepository(BookEntity)
         private readonly bookrepository: Repository<BookEntity>,
+        @InjectRepository(ClientEntity)
         private readonly clientrepository: Repository<ClientEntity>,
     ) {}
 
