@@ -1,15 +1,26 @@
 import { useState } from 'react'
 import type { BookModel, CreateBookModel, UpdateBookModel } from '../BookModel'
+import type { ClientModel } from '../Clients/ClientModel'
 import axios from 'axios'
 
 export const useBookProvider = () => {
-  const [books, setBooks] = useState<BookModel[]>([])
+  const [bookList, setBookList] = useState<Array<{Books:BookModel, Sales_count:number}>>([])
+  const [bookInfo, setBookInfo] = useState<{book: BookModel, clients: ClientModel[], purchaseCount: number} | null>(null) 
 
   const loadBooks = () => {
     axios
       .get('http://localhost:3000/books')
       .then(data => {
-        setBooks(data.data.data )
+        setBookList(data.data.data )
+      })
+      .catch(err => console.error(err))
+  }
+
+  const getBookInfo = (id: string) => {
+    axios
+      .get(`http://localhost:3000/books/${id}`)
+      .then(data => {
+        setBookInfo(data.data.data)
       })
       .catch(err => console.error(err))
   }
@@ -41,5 +52,5 @@ export const useBookProvider = () => {
       .catch(err => console.error(err))
   }
 
-  return { books, loadBooks, createBook, updateBook, deleteBook }
+  return { bookList, bookInfo, loadBooks, getBookInfo, createBook, updateBook, deleteBook }
 }

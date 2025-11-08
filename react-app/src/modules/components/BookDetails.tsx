@@ -10,12 +10,16 @@ interface BookDetailsProps {
 }
 
 export const BookDetails = ({ id }: BookDetailsProps) => {
-  const { isLoading, book, loadBook } = useBookDetailsProvider(id)
+  const { isLoading, bookInfo, loadBook } = useBookDetailsProvider(id)
 
   useEffect(() => {
     loadBook()
   }, [id])
 
+  useEffect(() => {
+    console.log(bookInfo)
+  }, [bookInfo])
+  
   if (isLoading) {
     return <Skeleton active />
   }
@@ -25,8 +29,8 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
       <Link to={booksRoute.to}>
         <ArrowLeftOutlined />
       </Link>
-      <Typography.Title level={1}>{book?.title}</Typography.Title>
-      <Typography.Title level={3}>{book?.yearPublished}</Typography.Title>
+      <Typography.Title level={1}>{bookInfo?.book.title}</Typography.Title>
+      <Typography.Title level={3}>{bookInfo?.book.yearPublished}</Typography.Title>
     </Space>
   )
 }
