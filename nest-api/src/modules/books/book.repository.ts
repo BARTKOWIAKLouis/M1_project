@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { AuthorEntity } from '../authors/author.entity';
+import { AuthorEntity, AuthorId } from '../authors/author.entity';
 import {
   BookModel,
   CreateBookModel,
@@ -33,7 +33,7 @@ export class BookRepository {
     return [books, totalCount];
   }
 
-  public async getBookById(id: string): Promise<BookModel | undefined> {
+  public async findBook(id: string): Promise<BookModel | undefined> {
     const book = await this.bookRepository.findOne({
       where: { id: id as BookId },
     });
@@ -54,6 +54,12 @@ export class BookRepository {
       ...book,
       author,
     };
+  }
+
+  public async GetAuthorBooks(id: string): Promise<[BookModel[], number]>{
+    return this.bookRepository.findAndCount({
+      where :{authorId: id as AuthorId}
+    })
   }
 
   public async createBook(book: CreateBookModel): Promise<BookModel> {
