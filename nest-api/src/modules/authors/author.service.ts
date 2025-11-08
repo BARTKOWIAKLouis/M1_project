@@ -7,9 +7,7 @@ import { BookModel } from '../books/book.model';
 
 @Injectable()
 export class AuthorService {
-  constructor(private readonly authorRepository: AuthorRepository,
-    private readonly bookRepository: BookRepository
-  ) {}
+  constructor(private readonly authorRepository: AuthorRepository, private readonly bookRepository: BookRepository, private readonly saleRepository: SalesRepository) {}
 
   public async getAllAuthors(input: FilterAuthorModel): Promise<[{Authors: AuthorModel, Number_of_Books: number}[], number]> {
     const [authors, totalCount]= await this.authorRepository.getAllAuthors(input);
@@ -23,7 +21,7 @@ export class AuthorService {
 
   }
 
-  public async getAuthorInfo(id: string): Promise<[AuthorModel, BookModel[], number] |undefined>{
+  public async getAuthorInfo(id: string): Promise<[AuthorModel, BookModel[], number, number] |undefined>{
     const author = await this.authorRepository.findAuthor(id);
 
     if(!author){
@@ -31,7 +29,8 @@ export class AuthorService {
     }
     const [Books, TotalCount] = await this.bookRepository.GetAuthorBooks(id);
 
-    return [author, Books, TotalCount]
+    const averageSales = await this.saleRepository.getAuthorAverageSales(id, Books);
+    return [author, Books, TotalCount, averageSales]
   }
 
   public async createAuthor(author: CreateAuthorModel): Promise<AuthorModel> {

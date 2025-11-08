@@ -58,4 +58,13 @@ export class SalesRepository {
         const clients = sales.map((sale) => sale.client);
         return ( [clients, totalCount] );
     }
+
+    public async getAuthorAverageSales(id: string, books: BookModel[]): Promise<number>{
+        let totalSales = 0;
+        for (const book of books){
+            const [ , bookSalesCount ] = await this.getBookSales(book.id);
+            totalSales += bookSalesCount;
+        }
+        return books.length ? totalSales / books.length : 0;
+    }
 }

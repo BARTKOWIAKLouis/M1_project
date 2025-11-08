@@ -41,4 +41,9 @@ export class AuthorController {
   updateAuthor(@Param('id') id:string, @Body() updateAuthorDto: UpdateAuthorDto){
     return this.authorService.updateAuthor(id, updateAuthorDto);
   }
+
+  @Delete(':id')
+  deleteAuthor(@Param('id') id:string){
+    return this.authorService.deleteAuthor(id);
+  }
 }

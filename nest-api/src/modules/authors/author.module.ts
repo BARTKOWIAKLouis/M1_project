@@ -6,10 +6,12 @@ import { AuthorRepository } from './author.repository';
 import { AuthorService } from './author.service';
 import { BookRepository } from '../books/book.repository';
 import { BookEntity } from '../books/entities/book.entity';
+import { SalesRepository } from '../sales/sales.repository';
+import { SaleEntity } from '../sales/sales.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AuthorEntity, BookEntity])],
+  imports: [TypeOrmModule.forFeature([AuthorEntity, BookEntity, SaleEntity])],
   controllers: [AuthorController],
-  providers: [AuthorRepository, AuthorService, BookRepository],
+  providers: [AuthorRepository, AuthorService, BookRepository, SalesRepository],
 })
 export class AuthorModule {}
