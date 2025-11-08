@@ -16,10 +16,6 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
     loadBook()
   }, [id])
 
-  useEffect(() => {
-    console.log(bookInfo)
-  }, [bookInfo])
-  
   if (isLoading) {
     return <Skeleton active />
   }

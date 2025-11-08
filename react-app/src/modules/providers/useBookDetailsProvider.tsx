@@ -10,8 +10,7 @@ export const useBookDetailsProvider = (id: string) => {
     setIsLoading(true)
     fetch(`http://localhost:3000/books/${id}`)
       .then(response => response.json())
-      .then(data => {console.log("response", data);
-      setBookInfo(data.data)})
+      .then(data => setBookInfo(data.data))
       .finally(() => setIsLoading(false))
 
   }
