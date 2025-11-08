@@ -12,6 +12,6 @@ import { ClientEntity } from '../clients/clients.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([BookEntity, AuthorEntity, SaleEntity, ClientEntity])],
   controllers: [BookController],
-  providers: [BookRepository, BookService, SalesRepository, ClientEntity],
+  providers: [BookRepository, BookService, SalesRepository],
 })
 export class BookModule {}

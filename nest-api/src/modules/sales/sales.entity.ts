@@ -34,5 +34,5 @@ export class SaleEntity extends BaseEntity {
     book: BookEntity;
 
     @Column({ name: 'date', type: 'varchar'})
-    date: string;
+    saleDate: Date;
 }

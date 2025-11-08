@@ -7,6 +7,7 @@ import {
 } from './book.model';
 import { BookRepository } from './book.repository';
 import { SalesRepository } from '../sales/sales.repository';
+import { ClientModel } from '../clients/client.model';
 
 @Injectable()
 export class BookService {
@@ -24,8 +25,16 @@ export class BookService {
     return [booksWithSalesCounts, totalCount];
   }
 
-  public async getBookById(id: string): Promise<BookModel | undefined> {
-    return this.bookRepository.findBook(id);
+  public async getBookInfo(id: string): Promise<[BookModel, ClientModel[], number ]| undefined> {
+    const book = await this.bookRepository.findBook(id);
+
+    if (!book) {
+      return undefined;
+    }
+
+    const [purchasingClients, purchaseCount] = await this.salesRepository.getBookSales(id);
+
+    return [book, purchasingClients, purchaseCount];
   }
 
   public async createBook(book: CreateBookModel): Promise<BookModel> {

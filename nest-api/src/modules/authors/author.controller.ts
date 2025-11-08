@@ -21,15 +21,15 @@ export class AuthorController {
   }
 
   @Get(':id')
-  async getAuthorInfo(@Param("id") id:string): Promise<{data: {author: AuthorModel, writtenBooks: BookModel[], number}| undefined}>{
+  async getAuthorInfo(@Param("id") id:string): Promise<{data: {author: AuthorModel, writtenBooks: BookModel[], totalCount: number, averageSales: number}| undefined}>{
     const authorInfo = await this.authorService.getAuthorInfo(id);
 
     if(!authorInfo){
-      return {data:undefined};
+      return {data: undefined};
     }
 
-    const [author, writtenBooks, number] = authorInfo;
-    return {data: {author, writtenBooks, number}};
+    const [author, writtenBooks, totalCount, averageSales] = authorInfo;
+    return {data: {author, writtenBooks, totalCount, averageSales}};
   }
 
   @Post()

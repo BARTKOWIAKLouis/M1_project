@@ -59,7 +59,7 @@ export class SalesRepository {
         return ( [clients, totalCount] );
     }
 
-    public async getAuthorAverageSales(id: string, books: BookModel[]): Promise<number>{
+    public async getAuthorAverageSales(books: BookModel[]): Promise<number>{
         let totalSales = 0;
         for (const book of books){
             const [ , bookSalesCount ] = await this.getBookSales(book.id);

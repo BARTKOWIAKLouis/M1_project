@@ -29,7 +29,7 @@ export class AuthorService {
     }
     const [Books, TotalCount] = await this.bookRepository.GetAuthorBooks(id);
 
-    const averageSales = await this.saleRepository.getAuthorAverageSales(id, Books);
+    const averageSales = await this.saleRepository.getAuthorAverageSales(Books);
     return [author, Books, TotalCount, averageSales]
   }
 

@@ -11,6 +11,7 @@ import {
 import { CreateBookDto, GetBooksDto, UpdateBookDto } from './book.dto';
 import { BookModel, GetBooksModel } from './book.model';
 import { BookService } from './book.service';
+import { ClientModel } from '../clients/client.model';
 
 @Controller('books')
 export class BookController {
@@ -36,8 +37,13 @@ export class BookController {
   }
 
   @Get(':id')
-  public async getBook(@Param('id') id: string): Promise<BookModel | undefined> {
-    return this.bookService.getBookById(id);
+  public async getBook(@Param('id') id: string): Promise<{data:{book: BookModel, clients: ClientModel[], number}| undefined}> {
+    const bookInfo = await this.bookService.getBookInfo(id);
+    if (!bookInfo) {
+      return {data: undefined};
+    }
+    const [book, clients, number] = bookInfo;
+    return {data: {book, clients, number}};
   }
 
   @Post()
