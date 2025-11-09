@@ -19,6 +19,7 @@ export const useBookProvider = () => {
     axios
       .post('http://localhost:3000/books', book)
       .then(() => {
+        //Refresh the book list after creating a new book
         loadBooks()
       })
       .catch(err => console.error(err))
@@ -28,6 +29,7 @@ export const useBookProvider = () => {
     axios
       .patch(`http://localhost:3000/books/${id}`, input)
       .then(() => {
+        //Refresh the book list after update
         loadBooks()
       })
       .catch(err => console.error(err))
@@ -37,6 +39,7 @@ export const useBookProvider = () => {
     axios
       .delete(`http://localhost:3000/books/${id}`)
       .then(() => {
+        //Refresh the book list after delete
         loadBooks()
       })
       .catch(err => console.error(err))

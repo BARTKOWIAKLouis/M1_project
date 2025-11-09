@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { BookModel, UpdateBookModel } from '../BookModel'
+import type { BookModel, UpdateBookModel } from '../Books/BookModel'
 import { Button, Col, Row } from 'antd'
 import {
   CheckOutlined,

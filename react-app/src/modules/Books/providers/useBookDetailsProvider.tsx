@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { BookModel } from '../BookModel'
-import type { ClientModel } from '../Clients/ClientModel'
+import type { ClientModel } from '../../Clients/ClientModel'
 
 export const useBookDetailsProvider = (id: string) => {
   const [isLoading, setIsLoading] = useState(false)
