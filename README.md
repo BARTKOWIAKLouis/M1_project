@@ -1,5 +1,8 @@
 # M1_project
 
+    ! Attention, certaines versions empêchent la bonne exécution de quelques fichiers !
+    ! Si un problème de la sorte survient lors de la compilation, veuillez mettre à jour node.js !
+
 ## Group :
  - Bartkowiak Louis
  - Rouzé Capucine
