@@ -5,7 +5,7 @@ import { SalesRepository } from "./sales.repository";
 export class SalesService {
     constructor(private readonly salesRepository :SalesRepository) {}
 
-    public async ceateSale(saleData: {bookId: string, clientId: string, saleDate: Date}): Promise<void> {
+    public async createSale(saleData: {bookId: string, clientId: string, saleDate: Date}): Promise<void> {
         await this.salesRepository.createSale(saleData);
     }
 }
