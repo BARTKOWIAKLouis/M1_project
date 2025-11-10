@@ -3,3 +3,5 @@ dist/
 .tanstack/
 .DS_Store
 nest-api/db
+.gitattributes
+.editorconfig
