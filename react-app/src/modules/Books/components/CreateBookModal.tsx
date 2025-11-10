@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import type { CreateBookModel } from '../Books/BookModel'
+import type { CreateBookModel } from '../BookModel'
 import { Button, Input, Modal, Select, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { useAuthorsProviders } from '../Authors/providers/useAuthorsProviders'
+import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders'
 
 interface CreateBookModalProps {
   onCreate: (book: CreateBookModel) => void

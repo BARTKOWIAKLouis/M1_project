@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useBookProvider } from '../Books/providers/useBookProvider'
+import { useBookProvider } from '../providers/useBookProvider'
 import { BookListItem } from './BookListItem'
 import { CreateBookModal } from './CreateBookModal'
 

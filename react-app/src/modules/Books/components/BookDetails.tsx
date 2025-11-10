@@ -1,0 +1,82 @@
+import { Image, Skeleton, Space, Typography, Row, Col } from 'antd'
+import { useBookDetailsProvider } from '../providers/useBookDetailsProvider'
+import { useEffect } from 'react'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { Link } from '@tanstack/react-router'
+import { Route as booksRoute } from '../../../routes/books'
+
+interface BookDetailsProps {
+  id: string
+}
+
+export const BookDetails = ({ id }: BookDetailsProps) => {
+  const { isLoading, bookInfo, loadBook } = useBookDetailsProvider(id)
+
+  useEffect(() => {
+    loadBook()
+  }, [id])
+
+  if (isLoading) {
+    return <Skeleton active />
+  }
+  console.log(bookInfo?.book)
+
+  return (
+    <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
+      <Link to={booksRoute.to}>
+        <ArrowLeftOutlined
+          style={{ color: 'white', fontSize: '20px', marginLeft: '-100%' }}
+        />
+      </Link>
+      <Row gutter={[32, 32]}>
+        <Col span={8}>
+          <Image
+            src={bookInfo?.book.picture}
+            alt="Book Cover"
+            width={300}
+            style={{ borderRadius: '8px' }}
+          />
+        </Col>
+        <Col span={16}>
+          <Space direction="vertical" size="large">
+            <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
+              {bookInfo?.book.title}
+            </Typography.Title>
+            <Typography.Title level={2} style={{ color: 'white', margin: 0 }}>
+              {bookInfo?.book.author.firstName} {bookInfo?.book.author.lastName}
+            </Typography.Title>
+            <Typography.Title level={3} style={{ color: 'white', margin: 0 }}>
+              {bookInfo?.book.yearPublished}
+            </Typography.Title>
+          </Space>
+        </Col>
+      </Row>
+      <div style={{ marginTop: '40px' }}>
+        <Typography.Title level={4} style={{ color: 'white' }}>
+          Clients who purchased this book:
+        </Typography.Title>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {bookInfo?.clients.length === 0 ? (
+            <Typography.Text style={{ color: 'white' }}>
+              No clients have purchased this book.
+            </Typography.Text>
+          ) : (
+            bookInfo?.clients.map(client => (
+              <div
+                key={client.id}
+                style={{
+                  color: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: '12px',
+                  borderRadius: '6px',
+                }}
+              >
+                {client.firstName} {client.lastName} ({client.email})
+              </div>
+            ))
+          )}
+        </Space>
+      </div>
+    </Space>
+  )
+}
