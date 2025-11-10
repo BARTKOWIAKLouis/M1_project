@@ -3,21 +3,23 @@ import type { BookModel, CreateBookModel, UpdateBookModel } from '../BookModel'
 import axios from 'axios'
 
 export const useBookProvider = () => {
-  const [books, setBooks] = useState<BookModel[]>([])
+  const [bookList, setBookList] = useState<Array<{Books:BookModel, Sales_count:number}>>([])
 
   const loadBooks = () => {
     axios
       .get('http://localhost:3000/books')
       .then(data => {
-        setBooks(data.data.data )
+        setBookList(data.data.data )
       })
       .catch(err => console.error(err))
   }
+
 
   const createBook = (book: CreateBookModel) => {
     axios
       .post('http://localhost:3000/books', book)
       .then(() => {
+        //Refresh the book list after creating a new book
         loadBooks()
       })
       .catch(err => console.error(err))
@@ -27,6 +29,7 @@ export const useBookProvider = () => {
     axios
       .patch(`http://localhost:3000/books/${id}`, input)
       .then(() => {
+        //Refresh the book list after update
         loadBooks()
       })
       .catch(err => console.error(err))
@@ -36,10 +39,11 @@ export const useBookProvider = () => {
     axios
       .delete(`http://localhost:3000/books/${id}`)
       .then(() => {
+        //Refresh the book list after delete
         loadBooks()
       })
       .catch(err => console.error(err))
   }
 
-  return { books, loadBooks, createBook, updateBook, deleteBook }
+  return { bookList, loadBooks, createBook, updateBook, deleteBook }
 }

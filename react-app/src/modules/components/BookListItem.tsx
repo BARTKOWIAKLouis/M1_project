@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { BookModel, UpdateBookModel } from '../BookModel'
+import type { BookModel, UpdateBookModel } from '../Books/BookModel'
 import { Button, Col, Row } from 'antd'
 import {
   CheckOutlined,
@@ -11,11 +11,12 @@ import { Link } from '@tanstack/react-router'
 
 interface BookListItemProps {
   book: BookModel
+  sales_count: number
   onDelete: (id: string) => void
   onUpdate: (id: string, input: UpdateBookModel) => void
 }
 
-export function BookListItem({ book, onDelete, onUpdate }: BookListItemProps) {
+export function BookListItem({ book, sales_count, onDelete, onUpdate }: BookListItemProps) {
   const [title, setTitle] = useState(book.title)
   const [isEditing, setIsEditing] = useState(false)
 
@@ -35,14 +36,14 @@ export function BookListItem({ book, onDelete, onUpdate }: BookListItemProps) {
         width: '100%',
         height: '50px',
         borderRadius: '10px',
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#00c080ff',
         margin: '1rem 0',
         padding: '.25rem',
         display: 'flex',
         justifyContent: 'space-between',
       }}
     >
-      <Col span={12} style={{ margin: 'auto 0' }}>
+      <Col span={10} style={{ margin: 'auto 0' }}>
         {isEditing ? (
           <input value={title} onChange={e => setTitle(e.target.value)} />
         ) : (
@@ -59,9 +60,12 @@ export function BookListItem({ book, onDelete, onUpdate }: BookListItemProps) {
           </Link>
         )}
       </Col>
-      <Col span={9} style={{ margin: 'auto 0' }}>
+      <Col span={8} style={{ margin: 'auto 0' }}>
         by <span style={{ fontWeight: 'bold' }}>{book.author.firstName}</span>{' '}
         <span style={{ fontWeight: 'bold' }}>{book.author.lastName}</span>
+      </Col>
+      <Col span={3} style={{ margin: 'auto 0' }}>
+        Sales: <span>{String(sales_count)}</span>
       </Col>
       <Col
         span={3}

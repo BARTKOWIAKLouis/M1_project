@@ -10,12 +10,14 @@ export type BookModel = {
   title: string;
   author: BookAuthorModel;
   yearPublished: number;
+  picture?: string;
 };
 
 export type CreateBookModel = {
   title: string;
   authorId: AuthorId;
   yearPublished: number;
+  picture?: string;
 };
 
 export type UpdateBookModel = Partial<CreateBookModel>;
@@ -28,5 +30,5 @@ export type FilterBooksModel = {
 
 export type GetBooksModel = {
   totalCount: number;
-  data: BookModel[];
+  data: {Books: BookModel, Sales_count: number}[];
 };

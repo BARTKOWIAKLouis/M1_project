@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useBookProvider } from '../providers/useBookProvider'
+import { useBookProvider } from '../Books/providers/useBookProvider'
 import { BookListItem } from './BookListItem'
 import { CreateBookModal } from './CreateBookModal'
 
 export function BookList() {
-  const { books, loadBooks, deleteBook, updateBook, createBook } =
+  const { bookList, loadBooks, deleteBook, updateBook, createBook } =
     useBookProvider()
 
   useEffect(() => {
@@ -14,11 +14,14 @@ export function BookList() {
   return (
     <>
       <CreateBookModal onCreate={createBook} />
+
+      {/* List all books items with its number of sales */}
       <div style={{ padding: '0 .5rem' }}>
-        {books.map(book => (
+        {bookList.map(item => (
           <BookListItem
-            key={book.id}
-            book={book}
+            key={item.Books.id}
+            book={item.Books}
+            sales_count={item.Sales_count}
             onDelete={deleteBook}
             onUpdate={updateBook}
           />

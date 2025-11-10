@@ -20,6 +20,7 @@
 ## Get started :
 
 ### Nest API
+Open a terminal and use these commands to launch the backend server
 ```bash
 > cd nest-api
 > npm install
@@ -27,6 +28,7 @@
 ```
 
 ### React application
+In another terminal use these commands to launch the frontend server
 ```bash
 > cd react-app
 > npm install

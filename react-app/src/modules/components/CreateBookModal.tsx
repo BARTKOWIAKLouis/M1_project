@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import type { CreateBookModel } from '../BookModel'
+import type { CreateBookModel } from '../Books/BookModel'
 import { Button, Input, Modal, Select, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { useBookAuthorsProviders } from '../providers/useBookAuthorsProviders'
+import { useAuthorsProviders } from '../Authors/providers/useAuthorsProviders'
 
 interface CreateBookModalProps {
   onCreate: (book: CreateBookModel) => void
@@ -13,7 +13,7 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
   const [title, setTitle] = useState('')
   const [yearPublished, setYearPublished] = useState(0)
   const [authorId, setAuthorId] = useState<string | undefined>(undefined)
-  const { authors, loadAuthors } = useBookAuthorsProviders()
+  const { authorList, loadAuthors } = useAuthorsProviders()
 
   const onClose = () => {
     setTitle('')
@@ -60,9 +60,9 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
           />
           <Select
             style={{ width: '100%' }}
-            options={authors.map(author => ({
-              label: `${author.firstName} ${author.lastName}`,
-              value: author.id,
+            options={authorList.map(authorInfo => ({
+              label: `${authorInfo.Authors.firstName} ${authorInfo.Authors.lastName}`,
+              value: authorInfo.Authors.id,
             }))}
             onChange={value => setAuthorId(value)}
           />

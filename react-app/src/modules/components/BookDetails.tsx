@@ -1,5 +1,5 @@
 import { Skeleton, Space, Typography } from 'antd'
-import { useBookDetailsProvider } from '../providers/useBookDetailsProvider'
+import { useBookDetailsProvider } from '../Books/providers/useBookDetailsProvider'
 import { useEffect } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
@@ -10,7 +10,7 @@ interface BookDetailsProps {
 }
 
 export const BookDetails = ({ id }: BookDetailsProps) => {
-  const { isLoading, book, loadBook } = useBookDetailsProvider(id)
+  const { isLoading, bookInfo, loadBook } = useBookDetailsProvider(id)
 
   useEffect(() => {
     loadBook()
@@ -25,8 +25,8 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
       <Link to={booksRoute.to}>
         <ArrowLeftOutlined />
       </Link>
-      <Typography.Title level={1}>{book?.title}</Typography.Title>
-      <Typography.Title level={3}>{book?.yearPublished}</Typography.Title>
+      <Typography.Title level={1}>{bookInfo?.book.title}</Typography.Title>
+      <Typography.Title level={3}>{bookInfo?.book.yearPublished}</Typography.Title>
     </Space>
   )
 }

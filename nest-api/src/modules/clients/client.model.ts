@@ -14,3 +14,16 @@ export type CreateClientModel = {
     email?: string;
     picture?: string;
 };
+
+export type UpdateClientModel = Partial<CreateClientModel>;
+
+export type FilterClientModel = {
+    limit: number;
+      offset: number;
+      sort?: Partial<Record<keyof ClientModel, 'ASC' | 'DESC'>>;
+}
+
+export type GetClientModel= {
+    totalCount: number;
+    data: {client: ClientModel, purchaseCount: number}[];
+}
