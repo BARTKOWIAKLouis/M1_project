@@ -52,48 +52,46 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
           disabled: !authorId || !title?.length || !yearPublished,
         }}
       >
-        
         <Space direction="vertical" style={{ width: '100%' }}>
           <span>
             <p>Title :</p>
-          <Input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
+            <Input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
           </span>
 
           <span>
             <p>Picture :</p>
-          <Input
-            type="text"
-            placeholder="Link Picture"
-            value={picture}
-            onChange={e => setPicture(e.target.value)}
-          />
+            <Input
+              type="text"
+              placeholder="Link Picture"
+              value={picture}
+              onChange={e => setPicture(e.target.value)}
+            />
           </span>
 
-
-          <span >
+          <span>
             <p>Author :</p>
-            <Select style= {{ width: '100%' }}
-            
-            options={authorList.map(authorInfo => ({
-              label: `${authorInfo.Authors.firstName} ${authorInfo.Authors.lastName}`,
-              value: authorInfo.Authors.id,
-            }))}
-            onChange={value => setAuthorId(value)}
-          />
+            <Select
+              style={{ width: '100%' }}
+              options={authorList.map(authorInfo => ({
+                label: `${authorInfo.Authors.firstName} ${authorInfo.Authors.lastName}`,
+                value: authorInfo.Authors.id,
+              }))}
+              onChange={value => setAuthorId(value)}
+            />
           </span>
           <span>
             <p>Year Published :</p>
-          <Input
-            type="number"
-            placeholder="Year Published"
-            value={yearPublished}
-            onChange={e => setYearPublished(Number(e.target.value))}
-          />
+            <Input
+              type="number"
+              placeholder="Year Published"
+              value={yearPublished}
+              onChange={e => setYearPublished(Number(e.target.value))}
+            />
           </span>
         </Space>
       </Modal>

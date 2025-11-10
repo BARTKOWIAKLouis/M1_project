@@ -4,7 +4,11 @@ import type { ClientModel } from '../../Clients/ClientModel'
 
 export const useBookDetailsProvider = (id: string) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [bookInfo, setBookInfo] = useState<{book: BookModel, clients: ClientModel[], purchaseCount: number} | null>(null) 
+  const [bookInfo, setBookInfo] = useState<{
+    book: BookModel
+    clients: ClientModel[]
+    purchaseCount: number
+  } | null>(null)
 
   const loadBook = () => {
     setIsLoading(true)
@@ -12,7 +16,6 @@ export const useBookDetailsProvider = (id: string) => {
       .then(response => response.json())
       .then(data => setBookInfo(data.data))
       .finally(() => setIsLoading(false))
-
   }
 
   return { isLoading, bookInfo, loadBook }

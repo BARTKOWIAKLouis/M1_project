@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { BookModel, UpdateBookModel } from '../BookModel'
-import { Button, Col, Row } from 'antd'
+import { Button, Col, Row, Image } from 'antd'
 import {
   CheckOutlined,
   CloseOutlined,
@@ -41,14 +41,22 @@ export function BookListItem({
         width: '100%',
         height: '50px',
         borderRadius: '10px',
-        backgroundColor: '#00c080ff',
+        backgroundColor: '#395e66',
         margin: '1rem 0',
         padding: '.25rem',
         display: 'flex',
         justifyContent: 'space-between',
       }}
     >
-      <Col span={10} style={{ margin: 'auto 0' }}>
+      <Col span={1}>
+        <Image
+          src={book.picture}
+          alt="Book Cover"
+          width={1}
+          style={{ borderRadius: '3px' }}
+        />
+      </Col>
+      <Col span={8} style={{ margin: 'auto 0' }}>
         {isEditing ? (
           <input value={title} onChange={e => setTitle(e.target.value)} />
         ) : (
@@ -58,14 +66,18 @@ export function BookListItem({
             style={{
               margin: 'auto 0',
               textAlign: 'left',
+              color: 'white',
             }}
           >
-            <span style={{ fontWeight: 'bold' }}>{book.title}</span> -{' '}
-            {book.yearPublished}
+            <span style={{ fontWeight: 'bold' }}>{book.title}</span>
+            {'  '}
           </Link>
         )}
       </Col>
-      <Col span={8} style={{ margin: 'auto 0' }}>
+      <Col span={1} style={{ margin: 'auto 0', color: 'white' }}>
+        <span>{book.yearPublished}</span>
+      </Col>
+      <Col span={5} style={{ margin: 'auto 0' }}>
         by <span style={{ fontWeight: 'bold' }}>{book.author.firstName}</span>{' '}
         <span style={{ fontWeight: 'bold' }}>{book.author.lastName}</span>
       </Col>
