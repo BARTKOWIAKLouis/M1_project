@@ -2,4 +2,3 @@ node_modules/
 dist/
 .tanstack/
 .DS_Store
-nest-api/db
