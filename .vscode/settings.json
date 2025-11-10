@@ -1,0 +1,5 @@
+{
+  // Use LF in the editor by default to match repository normalization
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true
+}

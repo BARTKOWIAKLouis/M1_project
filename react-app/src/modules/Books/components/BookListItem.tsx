@@ -62,7 +62,7 @@ export function BookListItem({
         ) : (
           <Link
             to={`/books/$bookId`}
-            params={{ bookId: book.id }}
+            params={{ bookId: book.id}}
             style={{
               margin: 'auto 0',
               textAlign: 'left',

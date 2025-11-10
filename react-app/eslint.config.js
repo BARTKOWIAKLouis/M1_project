@@ -36,6 +36,9 @@ export default [
       ...reactHooks.configs.recommended.rules,
       ...reactRefresh.configs.vite.rules,
       ...prettierConfig.rules,
+      // Avoid failing on CRLF vs LF differences locally on Windows; repository .gitattributes
+      // ensures files are normalized to LF. Turn this rule off so lint won't block edits.
+      'linebreak-style': 'off',
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
     },
