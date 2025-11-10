@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { BookDetails } from '../modules/Books/components/BookDetails'
+import { BookDetails } from '../../modules/Books/components/BookDetails'
 
-export const Route = createFileRoute('/books/$bookId')({
+export const Route = createFileRoute('/books/books/$bookId')({
   component: BookDetailsPage,
 })
 
