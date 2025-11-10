@@ -32,6 +32,11 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
     <>
       <Button
         icon={<PlusOutlined />}
+        style={{
+          backgroundColor: 'transparent',
+          borderColor: '#395e66',
+          color: 'white',
+        }}
         type="primary"
         onClick={() => setIsOpen(true)}
       >

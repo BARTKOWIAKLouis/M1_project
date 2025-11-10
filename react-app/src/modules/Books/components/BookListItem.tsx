@@ -41,7 +41,7 @@ export function BookListItem({
         width: '100%',
         height: '50px',
         borderRadius: '10px',
-        backgroundColor: '#395e66',
+        backgroundColor: '#653239',
         margin: '1rem 0',
         padding: '.25rem',
         display: 'flex',
@@ -62,7 +62,7 @@ export function BookListItem({
         ) : (
           <Link
             to={`/books/$bookId`}
-            params={{ bookId: book.id}}
+            params={{ bookId: book.id }}
             style={{
               margin: 'auto 0',
               textAlign: 'left',

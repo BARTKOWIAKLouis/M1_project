@@ -5,7 +5,13 @@ import { Route as booksRoute } from './routes/books'
 import { Route as authorsRoute } from './routes/authors'
 import { Route as clientsRoute } from './routes/clients'
 import { Space, type MenuProps } from 'antd'
-import { BookOutlined, HomeOutlined, InfoOutlined, UserOutlined, SignatureOutlined } from '@ant-design/icons'
+import {
+  BookOutlined,
+  HomeOutlined,
+  InfoOutlined,
+  UserOutlined,
+  SignatureOutlined,
+} from '@ant-design/icons'
 import Menu from 'antd/es/menu/menu'
 
 interface LayoutProps {
@@ -39,7 +45,6 @@ export function Layout({ children }: LayoutProps) {
       key: 'about',
       icon: <InfoOutlined />,
     },
-
   ]
 
   return (
@@ -48,20 +53,31 @@ export function Layout({ children }: LayoutProps) {
       style={{
         width: '100%',
         height: '100vh',
+        backgroundColor: '#CCC7B9',
       }}
     >
       <div
         style={{
           textAlign: 'left',
           width: '100%',
-          backgroundColor: '#395E66',
+          backgroundColor: '#653239',
           color: 'white',
         }}
       >
         <h2 style={{ marginTop: '0' }}>Babel&apos;s Library</h2>
-        <Menu mode="horizontal" items={items} />
+        <Menu
+          mode="horizontal"
+          items={items}
+          style={{ backgroundColor: '#EAF9D9' }}
+        />
       </div>
-      <div style={{ width: '100%' }}>{children}</div>
+      <div
+        style={{
+          width: '100%',
+        }}
+      >
+        {children}
+      </div>
     </Space>
   )
 }

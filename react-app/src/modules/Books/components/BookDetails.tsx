@@ -1,7 +1,7 @@
-import { Image, Skeleton, Space, Typography, Row, Col } from 'antd'
+import { Image, Skeleton, Space, Typography, Row, Col, Button } from 'antd'
 import { useBookDetailsProvider } from '../providers/useBookDetailsProvider'
 import { useEffect } from 'react'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as booksRoute } from '../../../routes/books'
 interface BookDetailsProps {
@@ -22,12 +22,24 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
 
   return (
     <>
-      <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '95%',
+          padding: '10px',
+          paddingBottom: 0,
+        }}
+      >
         <Link to={booksRoute.to}>
-          <ArrowLeftOutlined
-            style={{ color: 'white', fontSize: '20px', marginLeft: '-100%' }}
-          />
+          <ArrowLeftOutlined style={{ color: 'white', fontSize: '20px' }} />
         </Link>
+        <Button type="primary" icon={<ShoppingCartOutlined />} size="large">
+          Buy Now
+        </Button>
+      </div>
+      <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
         <Row gutter={[32, 32]}>
           <Col span={8}>
             <Image
