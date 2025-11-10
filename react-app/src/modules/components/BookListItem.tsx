@@ -16,7 +16,12 @@ interface BookListItemProps {
   onUpdate: (id: string, input: UpdateBookModel) => void
 }
 
-export function BookListItem({ book, sales_count, onDelete, onUpdate }: BookListItemProps) {
+export function BookListItem({
+  book,
+  sales_count,
+  onDelete,
+  onUpdate,
+}: BookListItemProps) {
   const [title, setTitle] = useState(book.title)
   const [isEditing, setIsEditing] = useState(false)
 
