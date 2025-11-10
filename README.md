@@ -2,6 +2,7 @@
 
     ! Attention, certaines versions empêchent la bonne exécution de quelques fichiers !
     ! Si un problème de la sorte survient lors de la compilation, veuillez mettre à jour node.js !
+    ! Si cela ne marche pas et que le projet est enregistré dans votre OneDrive, passez en local !
 
 ## Group :
  - Bartkowiak Louis
