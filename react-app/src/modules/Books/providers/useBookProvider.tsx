@@ -3,17 +3,18 @@ import type { BookModel, CreateBookModel, UpdateBookModel } from '../BookModel'
 import axios from 'axios'
 
 export const useBookProvider = () => {
-  const [bookList, setBookList] = useState<Array<{Books:BookModel, Sales_count:number}>>([])
+  const [bookList, setBookList] = useState<
+    Array<{ Books: BookModel; Sales_count: number }>
+  >([])
 
   const loadBooks = () => {
     axios
       .get('http://localhost:3000/books')
       .then(data => {
-        setBookList(data.data.data )
+        setBookList(data.data.data)
       })
       .catch(err => console.error(err))
   }
-
 
   const createBook = (book: CreateBookModel) => {
     axios
