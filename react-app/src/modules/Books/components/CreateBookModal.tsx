@@ -14,6 +14,7 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
   const [yearPublished, setYearPublished] = useState(0)
   const [authorId, setAuthorId] = useState<string | undefined>(undefined)
   const { authorList, loadAuthors } = useAuthorsProviders()
+  const [picture, setPicture] = useState('')
 
   const onClose = () => {
     setTitle('')
@@ -51,27 +52,49 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
           disabled: !authorId || !title?.length || !yearPublished,
         }}
       >
+        
         <Space direction="vertical" style={{ width: '100%' }}>
+          <span>
+            <p>Title :</p>
           <Input
             type="text"
             placeholder="Title"
             value={title}
             onChange={e => setTitle(e.target.value)}
           />
-          <Select
-            style={{ width: '100%' }}
+          </span>
+
+          <span>
+            <p>Picture :</p>
+          <Input
+            type="text"
+            placeholder="Link Picture"
+            value={picture}
+            onChange={e => setPicture(e.target.value)}
+          />
+          </span>
+
+
+          <span >
+            <p>Author :</p>
+            <Select style= {{ width: '100%' }}
+            
             options={authorList.map(authorInfo => ({
               label: `${authorInfo.Authors.firstName} ${authorInfo.Authors.lastName}`,
               value: authorInfo.Authors.id,
             }))}
             onChange={value => setAuthorId(value)}
           />
+          </span>
+          <span>
+            <p>Year Published :</p>
           <Input
             type="number"
             placeholder="Year Published"
             value={yearPublished}
             onChange={e => setYearPublished(Number(e.target.value))}
           />
+          </span>
         </Space>
       </Modal>
     </>
