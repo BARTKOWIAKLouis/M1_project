@@ -3,7 +3,7 @@ export type AuthorModel = {
   firstName: string
   lastName: string
   picture?: string
-} 
+}
 
 export type CreateAuthorModel = {
   firstName: string

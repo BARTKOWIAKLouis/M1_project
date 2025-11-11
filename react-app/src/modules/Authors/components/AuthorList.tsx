@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useAuthorsProviders } from '../providers/useAuthorsProviders'
 import { AuthorListItem } from './AuthorListItem'
-// import { CreateAuthorModal } from './CreateAuthorModal'
+import { CreateAuthorModal } from './CreateAuthorModal'
 
 export function AuthorList() {
   const { authorList, loadAuthors, createAuthor, deleteAuthor } =
@@ -13,7 +13,7 @@ export function AuthorList() {
 
   return (
     <>
-      {/* <CreateAuthorModal onCreate={createAuthor} /> */}
+      <CreateAuthorModal onCreate={createAuthor} />
 
       {/* List all books items with its number of sales */}
       <div style={{ padding: '0 .5rem' }}>

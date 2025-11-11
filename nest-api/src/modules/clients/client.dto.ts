@@ -8,7 +8,6 @@ export class CreateClientDto {
     lastName: string;
 
     @IsString()
-    @IsOptional()
     email?: string;
 
     @IsString()
@@ -39,13 +38,13 @@ export class GetClientDto {
     @Min(1)
     @Max(100)
     limit: number;
-    
+
     @IsInt()
     @Min(0)
     offset: number;
-    
+
     @IsString()
     @IsOptional()
-    
+
     sort?: string;
 }

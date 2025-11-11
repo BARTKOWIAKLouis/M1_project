@@ -1,5 +1,5 @@
 import type { ClientModel } from '../ClientModel'
-import { Button, Col, Row } from 'antd'
+import { Button, Col, Row, Image} from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 
@@ -20,13 +20,22 @@ export function ClientListItem({
         width: '100%',
         height: '50px',
         borderRadius: '10px',
-        backgroundColor: '#00c080ff',
+        backgroundColor: '#653239',
         margin: '1rem 0',
         padding: '.25rem',
         display: 'flex',
         justifyContent: 'space-between',
       }}
     >
+      <Col span={1}>
+        <Image
+          src={client.picture}
+          alt="client picture"
+          height={1}
+          style={{ borderRadius: '3px' }}
+        />
+
+      </Col>
       <Col span={10} style={{ margin: 'auto 0' }}>
         <Link
           to={`/clients/$clientId`}

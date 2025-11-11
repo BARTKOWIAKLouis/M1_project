@@ -10,10 +10,10 @@ export class AuthorController {
 
   @Get()
   async getAllAuthors(@Query() input: GetAuthorsDto): Promise<GetAuthorsModel> {
-    const [property, direction] = input.sort ? input.sort.split(',') : ['title', 'ASC'];
+    const [property, direction] = input.sort ? input.sort.split(',') : ['firstName', 'ASC'];
 
     const [authorsWithBooks, totalCount]= await this.authorService.getAllAuthors({...input, sort:{[property]: direction}});
-    
+
     return{
       data:authorsWithBooks,
       totalCount

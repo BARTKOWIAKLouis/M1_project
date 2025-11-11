@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { CreateAuthorModel } from '../AuthorModel'
-import { Button, Input, Modal, Select, Space } from 'antd'
+import { Button, Input, Modal, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders'
 
 interface CreateAuthorModalProps {
   onCreate: (author: CreateAuthorModel) => void
@@ -24,6 +23,11 @@ export function CreateAuthorModal({ onCreate }: CreateAuthorModalProps) {
     <>
       <Button
         icon={<PlusOutlined />}
+        style={{
+          backgroundColor: 'white',
+          borderColor: '#653239',
+          color: '#653239',
+        }}
         type="primary"
         onClick={() => setIsOpen(true)}
       >
@@ -36,6 +40,7 @@ export function CreateAuthorModal({ onCreate }: CreateAuthorModalProps) {
           onCreate({
             firstName,
             lastName,
+            picture,
           })
           onClose()
         }}

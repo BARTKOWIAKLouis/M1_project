@@ -1,5 +1,5 @@
 import { Image, Skeleton, Space, Typography, Row, Col } from 'antd'
-import { useAuthorDetailProvider } from '../providers/useAuthorDetailProvider'
+import { useAthorDetailProvider } from '../providers/useAuthorDetailProvider'
 import { useEffect } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
@@ -10,7 +10,7 @@ interface AuthorDetailsProps {
 }
 
 export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
-  const { isLoading, authorInfo, loadAuthorDetail } = useAuthorDetailProvider(id)
+  const { isLoading, authorInfo, loadAuthorDetail } = useAthorDetailProvider(id)
 
   useEffect(() => {
     loadAuthorDetail()
@@ -40,7 +40,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
         <Col span={16}>
           <Space direction="vertical" size="large">
             <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
-              {authorInfo?.author.firstName} 
+              {authorInfo?.author.firstName}
             </Typography.Title>
             <Typography.Title level={2} style={{ color: 'white', margin: 0 }}>
               {authorInfo?.author.lastName}
