@@ -1,8 +1,7 @@
+// import { useState } from 'react'
 import type { AuthorModel } from '../AuthorModel'
 import { Button, Col, Row, Image} from 'antd'
-import {
-  DeleteOutlined,
-} from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 
 interface AuthorListItemProps {

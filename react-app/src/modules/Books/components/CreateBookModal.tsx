@@ -30,6 +30,19 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
 
   return (
     <>
+      {/* <style>
+        {`
+        .ant-modal .ant-modal-content {
+          background-color: #E2D4BA;
+          color: #653239;
+
+          .ant-input {
+          border-bottom: 2px solid #653239;
+          background-color: transparent;
+          color: #653239;
+          }
+        `}
+      </style> */}
       <Button
         icon={<PlusOutlined />}
         style={{

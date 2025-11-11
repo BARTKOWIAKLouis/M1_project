@@ -3,7 +3,7 @@ import type { AuthorModel } from "../AuthorModel";
 import type { BookModel } from "../../Books/BookModel";
 
 
-export const useAthorDetailProvider = (id: string) => {
+export const useAuthorDetailProvider = (id: string) => {
     const [isLoading, setIsLoading] = useState(false);
     const [authorInfo, setAuthorInfo] = useState<{author: AuthorModel, writtenBooks: BookModel[], totalCount: number, AverageSales: number} | null>(null);
 
