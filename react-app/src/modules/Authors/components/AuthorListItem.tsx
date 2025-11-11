@@ -1,12 +1,7 @@
-import { useState } from 'react'
-import type { AuthorModel, UpdateAuthorModel } from '../AuthorModel'
+// import { useState } from 'react'
+import type { AuthorModel } from '../AuthorModel'
 import { Button, Col, Row } from 'antd'
-import {
-  CheckOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-  EditOutlined,
-} from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 
 interface AuthorListItemProps {
@@ -20,8 +15,8 @@ export function AuthorListItem({
   Number_of_Books,
   onDelete,
 }: AuthorListItemProps) {
-  const [firstName, setFirstName] = useState(author.firstName)
-  const [lastName, setLastName] = useState(author.lastName)
+  // const [firstName, setFirstName] = useState(author.firstName)
+  // const [lastName, setLastName] = useState(author.lastName)
 
 
 

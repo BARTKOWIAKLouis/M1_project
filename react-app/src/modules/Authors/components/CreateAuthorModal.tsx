@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { CreateAuthorModel } from '../AuthorModel'
-import { Button, Input, Modal, Select, Space } from 'antd'
+import { Button, Input, Modal, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders'
 
 interface CreateAuthorModalProps {
   onCreate: (author: CreateAuthorModel) => void
