@@ -19,6 +19,8 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
   const onClose = () => {
     setTitle('')
     setYearPublished(0)
+    setAuthorId(undefined)
+    setPicture(undefined)
     setIsOpen(false)
   }
 

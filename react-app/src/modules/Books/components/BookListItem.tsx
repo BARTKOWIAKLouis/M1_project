@@ -1,9 +1,9 @@
 import type { BookModel, UpdateBookModel } from '../BookModel'
 import { Button, Col, Row, Image } from 'antd'
-import {
-  DeleteOutlined,
-} from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
+import { FileImageFilled } from '@ant-design/icons'
+import { useState } from 'react'
 
 interface BookListItemProps {
   book: BookModel
@@ -17,9 +17,11 @@ export function BookListItem({
   sales_count,
   onDelete,
 }: BookListItemProps) {
-
-
-
+  // debug: log the picture URL to verify it's valid on the list page
+  console.log('Book picture URL:', book)
+  const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 30
+  const IMAGE_HEIGHT = 45
   return (
     <Row
       style={{
@@ -35,27 +37,49 @@ export function BookListItem({
       }}
     >
       <Col span={1}>
-        <Image
-          src={book.picture}
-          alt="Book Cover"
-          height={1}
-          style={{ borderRadius: '3px' }}
-        />
-      </Col>
-      <Col span={8} style={{ margin: 'auto 0' }}>
-
-          <Link
-            to={`/books/$bookId`}
-            params={{ bookId: book.id }}
+        {book.picture && !imageError ? (
+          <Image
+            src={book.picture}
+            alt="Book Cover"
             style={{
-              margin: 'auto 0',
-              textAlign: 'left',
-              color: 'white',
+              borderRadius: '3px',
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
+              margin: '0 0 0 60px',
+              objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+            }}
+            preview={false}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div
+            style={{
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
+              borderRadius: '3px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '0 0 0 60px',
             }}
           >
-            <span style={{ fontWeight: 'bold' }}>{book.title}</span>
-            {'  '}
-          </Link>
+            <FileImageFilled style={{ fontSize: '32px', color: '#999' }} />
+          </div>
+        )}
+      </Col>
+      <Col span={8} style={{ margin: 'auto 0' }}>
+        <Link
+          to={`/books/$bookId`}
+          params={{ bookId: book.id }}
+          style={{
+            margin: 'auto 0',
+            textAlign: 'left',
+            color: 'white',
+          }}
+        >
+          <span style={{ fontWeight: 'bold' }}>{book.title}</span>
+          {'  '}
+        </Link>
       </Col>
       <Col span={1} style={{ margin: 'auto 0', color: 'white' }}>
         <span>{book.yearPublished}</span>
