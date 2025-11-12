@@ -4,13 +4,16 @@ import { useEffect } from 'react'
 import { ArrowLeftOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as booksRoute } from '../../../routes/books'
+import { BookOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 interface BookDetailsProps {
   id: string
 }
 
 export const BookDetails = ({ id }: BookDetailsProps) => {
   const { isLoading, bookInfo, loadBook } = useBookDetailsProvider(id)
-
+  const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 300
   useEffect(() => {
     loadBook()
   }, [id])
@@ -47,12 +50,33 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
       <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
         <Row gutter={[32, 32]}>
           <Col span={8}>
-            <Image
-              src={bookInfo?.book.picture}
-              alt="Book Cover"
-              width={300}
-              style={{ borderRadius: '8px' }}
-            />
+            {bookInfo?.book.picture && !imageError ? (
+              <Image
+                src={bookInfo?.book.picture}
+                alt="Book Cover"
+                style={{
+                  borderRadius: '3px',
+                  width: `${IMAGE_WIDTH}px`,
+                  margin: '0 0 0 60px',
+                  objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+                }}
+                preview={false}
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div
+                style={{
+                  width: `${IMAGE_WIDTH}px`,
+                  borderRadius: '3px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '0 0 0 60px',
+                }}
+              >
+                <BookOutlined style={{ fontSize: '32px', color: '#999' }} />
+              </div>
+            )}
           </Col>
           <Col span={16}>
             <Space
