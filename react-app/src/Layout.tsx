@@ -65,6 +65,10 @@ export function Layout({ children }: LayoutProps) {
       border-bottom: 2px solid #653239 !important;
       transition: border-bottom 0.2s ease;
     }
+
+    .ant-menu-light .ant-menu-item-selected a, .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected {
+          color : #653239;
+    }
         `}
       </style>
       <Space
