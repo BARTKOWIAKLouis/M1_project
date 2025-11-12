@@ -35,7 +35,12 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
         <Link to={booksRoute.to}>
           <ArrowLeftOutlined style={{ color: 'white', fontSize: '20px' }} />
         </Link>
-        <Button type="primary" icon={<ShoppingCartOutlined />} size="large">
+        <Button
+          type="primary"
+          icon={<ShoppingCartOutlined />}
+          style={{ backgroundColor: '#653239', borderColor: '#653239' }}
+          size="large"
+        >
           Buy Now
         </Button>
       </div>
