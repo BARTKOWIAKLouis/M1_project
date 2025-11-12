@@ -17,17 +17,17 @@ export function ClientList() {
 
       {/* List all clients items with its number of sales */}
       <div style={{ padding: '0 .5rem' }}>
-
-        { clientList ? (
-        clientList.map(item => (
-          <ClientListItem
-            key={item.client.id}
-            client={item.client}
-            purchaseCount={item.purchaseCount}
-            onDelete={deleteClient}
-          />
-        ))) : (
-          <div style={{margin: 'auto'}}>No clients founds</div>
+        {clientList ? (
+          clientList.map(item => (
+            <ClientListItem
+              key={item.client.id}
+              client={item.client}
+              purchaseCount={item.purchaseCount}
+              onDelete={deleteClient}
+            />
+          ))
+        ) : (
+          <div style={{ margin: 'auto' }}>No clients founds</div>
         )}
       </div>
     </>

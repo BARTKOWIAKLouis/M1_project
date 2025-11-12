@@ -1,9 +1,12 @@
-import { Image, Skeleton, Space, Typography, Row, Col, Button } from 'antd'
+import { Image, Skeleton, Space, Typography, Row, Col } from 'antd'
 import { useBookDetailsProvider } from '../providers/useBookDetailsProvider'
 import { useEffect } from 'react'
-import { ArrowLeftOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as booksRoute } from '../../../routes/books'
+import { RegisterSaleModal } from '../../Sales/components/RegisterSaleModal'
+import { useSaleProviders } from '../../Sales/providers/useSaleProviders'
+
 import { BookOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import { EditBookModal } from './BookEditModal'
@@ -14,6 +17,7 @@ interface BookDetailsProps {
 export const BookDetails = ({ id }: BookDetailsProps) => {
   const { isLoading, bookInfo, loadBook, updateBook } =
     useBookDetailsProvider(id)
+  const { createSale } = useSaleProviders()
   const [imageError, setImageError] = useState(false)
   const IMAGE_WIDTH = 300
   useEffect(() => {
@@ -23,7 +27,6 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
   if (isLoading) {
     return <Skeleton active />
   }
-  console.log(bookInfo?.book)
 
   return (
     <>
@@ -40,14 +43,12 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
         <Link to={booksRoute.to}>
           <ArrowLeftOutlined style={{ color: 'white', fontSize: '20px' }} />
         </Link>
-        <Button
-          type="primary"
-          icon={<ShoppingCartOutlined />}
-          style={{ backgroundColor: '#653239', borderColor: '#653239' }}
-          size="large"
-        >
-          Buy Now
-        </Button>
+
+        {bookInfo ? (
+          <RegisterSaleModal onCreate={createSale} book={bookInfo?.book} />
+        ) : (
+          <></>
+        )}
       </div>
       <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
         <Row gutter={[32, 32]}>
