@@ -13,7 +13,7 @@ export class ClientEntity extends BaseEntity {
     @Column({name: 'last_name', type: 'varchar'})
     lastName: string;
 
-    @Column({name: 'email', type: 'varchar', unique: true, nullable: true})
+    @Column({name: 'email', type: 'varchar', nullable: true})
     email?: string;
 
     @Column({name : 'picture', type: 'varchar', nullable: true})

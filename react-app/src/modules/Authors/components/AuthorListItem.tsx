@@ -1,12 +1,7 @@
-import { useState } from 'react'
-import type { AuthorModel, UpdateAuthorModel } from '../AuthorModel'
-import { Button, Col, Row } from 'antd'
-import {
-  CheckOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-  EditOutlined,
-} from '@ant-design/icons'
+// import { useState } from 'react'
+import type { AuthorModel } from '../AuthorModel'
+import { Button, Col, Row, Image} from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 
 interface AuthorListItemProps {
@@ -20,9 +15,6 @@ export function AuthorListItem({
   Number_of_Books,
   onDelete,
 }: AuthorListItemProps) {
-  const [firstName, setFirstName] = useState(author.firstName)
-  const [lastName, setLastName] = useState(author.lastName)
-
 
 
   return (
@@ -31,14 +23,23 @@ export function AuthorListItem({
         width: '100%',
         height: '50px',
         borderRadius: '10px',
-        backgroundColor: '#00c080ff',
+        backgroundColor: '#653239',
         margin: '1rem 0',
         padding: '.25rem',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
       }}
     >
-      <Col span={10} style={{ margin: 'auto 0' }}>
+      <Col span={1}>
+        <Image
+          src={author.picture}
+          alt="Author Picture"
+          height={1}
+          style={{ borderRadius: '3px' }}
+        />
+      </Col>
+      <Col span={5} style={{ margin: 'auto 0' }}>
         {
           <Link
             to={`/authors/$authorId`}
@@ -46,9 +47,11 @@ export function AuthorListItem({
             style={{
               margin: 'auto 0',
               textAlign: 'left',
+              color: 'white',
+
             }}
           >
-            <span style={{ fontWeight: 'bold' }}>{author.firstName}{author.lastName}</span> -{' '}
+            <span style={{ fontWeight: 'bold' }}>{author.firstName}{author.lastName}</span>
 
           </Link>
         }

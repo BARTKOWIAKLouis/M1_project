@@ -10,10 +10,10 @@ export class ClientController {
 
     @Get()
     async getAllClients(@Query() input:GetClientDto): Promise<GetClientModel> {
-        const [property, direction] = input.sort? input.sort.split(',') : ['title', 'ASC']; 
-        
+        const [property, direction] = input.sort? input.sort.split(',') : ['firstName', 'ASC'];
+
         const [clientsWithPurchase, totalCount] = await this.clientService.getAllClients({...input, sort :{[property]: direction,}});
-        
+
         return {
             data: clientsWithPurchase,
             totalCount,

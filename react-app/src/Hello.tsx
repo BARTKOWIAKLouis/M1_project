@@ -1,13 +1,7 @@
-interface HelloProps {
-  children: React.ReactNode
-  name: string
-}
-
-export function Hello({ children, name }: HelloProps) {
+export function Hello() {
   return (
     <>
-      <h1>Hello {name}!</h1>
-      <h2>{children}</h2>
+      <h1>Welcome</h1>
     </>
   )
 }

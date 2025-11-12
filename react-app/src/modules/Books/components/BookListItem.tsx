@@ -1,11 +1,7 @@
-import { useState } from 'react'
 import type { BookModel, UpdateBookModel } from '../BookModel'
 import { Button, Col, Row, Image } from 'antd'
 import {
-  CheckOutlined,
-  CloseOutlined,
   DeleteOutlined,
-  EditOutlined,
 } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 
@@ -20,20 +16,9 @@ export function BookListItem({
   book,
   sales_count,
   onDelete,
-  onUpdate,
 }: BookListItemProps) {
-  const [title, setTitle] = useState(book.title)
-  const [isEditing, setIsEditing] = useState(false)
 
-  const onCancelEdit = () => {
-    setIsEditing(false)
-    setTitle(book.title)
-  }
 
-  const onValidateEdit = () => {
-    onUpdate(book.id, { title })
-    setIsEditing(false)
-  }
 
   return (
     <Row
@@ -46,20 +31,19 @@ export function BookListItem({
         padding: '.25rem',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
       }}
     >
       <Col span={1}>
         <Image
           src={book.picture}
           alt="Book Cover"
-          width={1}
+          height={1}
           style={{ borderRadius: '3px' }}
         />
       </Col>
       <Col span={8} style={{ margin: 'auto 0' }}>
-        {isEditing ? (
-          <input value={title} onChange={e => setTitle(e.target.value)} />
-        ) : (
+
           <Link
             to={`/books/$bookId`}
             params={{ bookId: book.id }}
@@ -72,7 +56,6 @@ export function BookListItem({
             <span style={{ fontWeight: 'bold' }}>{book.title}</span>
             {'  '}
           </Link>
-        )}
       </Col>
       <Col span={1} style={{ margin: 'auto 0', color: 'white' }}>
         <span>{book.yearPublished}</span>
@@ -93,20 +76,6 @@ export function BookListItem({
           margin: 'auto 0',
         }}
       >
-        {isEditing ? (
-          <>
-            <Button type="primary" onClick={onValidateEdit}>
-              <CheckOutlined />
-            </Button>
-            <Button onClick={onCancelEdit}>
-              <CloseOutlined />
-            </Button>
-          </>
-        ) : (
-          <Button type="primary" onClick={() => setIsEditing(true)}>
-            <EditOutlined />
-          </Button>
-        )}
         <Button type="primary" danger onClick={() => onDelete(book.id)}>
           <DeleteOutlined />
         </Button>
