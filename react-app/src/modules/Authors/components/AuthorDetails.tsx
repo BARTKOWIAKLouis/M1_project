@@ -80,7 +80,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
         <Space direction="vertical" style={{ width: '100%' }}>
           {authorInfo?.totalCount === 0 ? (
             <Typography.Text style={{ color: 'white' }}>
-              This author hasn't written any book.
+              <p>This author hasn&apos;t written any book.</p>
             </Typography.Text>
           ) : (
             authorInfo?.writtenBooks.map(book => (
