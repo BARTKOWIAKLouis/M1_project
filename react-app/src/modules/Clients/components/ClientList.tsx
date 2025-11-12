@@ -13,7 +13,6 @@ export function ClientList() {
 
   return (
     <>
-    {console.log(clientList)}
       <CreateClientModal onCreate={createClient} />
 
       {/* List all clients items with its number of sales */}

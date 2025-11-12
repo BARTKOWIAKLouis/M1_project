@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { CreateClientModel } from '../ClientModel'
-import { Button, Input, Modal, Select, Space } from 'antd'
+import { Button, Input, Modal, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders'
 
 interface CreateClientModalProps {
   onCreate: (client: CreateClientModel) => void
@@ -12,13 +11,12 @@ export function CreateClientModal({ onCreate }: CreateClientModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [firstName, setfirstName] = useState('')
   const [lastName, setlastName] = useState('')
-  const [email, setemail] = useState('')
-  const [picture, setPicture] = useState('')
+  const [email, setemail] = useState<undefined | string>(undefined)
+  const [picture, setPicture] = useState<undefined | string>(undefined)
 
   const onClose = () => {
     setfirstName('')
     setlastName('')
-    setemail('')
     setIsOpen(false)
   }
 
@@ -34,7 +32,7 @@ export function CreateClientModal({ onCreate }: CreateClientModalProps) {
         type="primary"
         onClick={() => setIsOpen(true)}
       >
-        Create Book
+        Add Client
       </Button>
       <Modal
         open={isOpen}
@@ -68,7 +66,7 @@ export function CreateClientModal({ onCreate }: CreateClientModalProps) {
             <p>LastName :</p>
             <Input
               type="text"
-              placeholder="firsName"
+              placeholder="lastName"
               value={lastName}
               onChange={e => setlastName(e.target.value)}
             />

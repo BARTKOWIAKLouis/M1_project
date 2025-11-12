@@ -43,17 +43,14 @@ export function ClientListItem({
           style={{
             margin: 'auto 0',
             textAlign: 'left',
+            color: 'white',
           }}
         >
-          <span style={{ fontWeight: 'bold' }}>{client.firstName}</span> -{' '}
-          {client.lastName}
+          <span >{client.firstName}-{' '}{client.lastName}</span>
         </Link>
       </Col>
-      <Col span={8} style={{ margin: 'auto 0' }}>
-        by <span style={{ fontWeight: 'bold' }}>{client.email}</span>
-      </Col>
-      <Col span={3} style={{ margin: 'auto 0' }}>
-        Sales: <span>{String(purchaseCount)}</span>
+      <Col span={5} style={{margin: 'auto 0' }}>
+        Purchases: <strong>{purchaseCount}</strong>
       </Col>
       <Col
         span={3}

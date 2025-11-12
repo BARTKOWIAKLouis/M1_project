@@ -20,7 +20,9 @@ export class ClientRepository {
     }
 
     public async createClient(client: CreateClientModel): Promise<ClientModel> {
+        console.log("Creating client:", client);
         return this.clientRepository.save(this.clientRepository.create(client));
+
     }
 
     public async findClient(id: string) : Promise<ClientModel | undefined> {
@@ -32,7 +34,7 @@ export class ClientRepository {
 
         return client;
     }
-    
+
     public async updateClient( id: string,client: UpdateClientModel,
     ): Promise<ClientModel | undefined>{
         const oldclient = await this.clientRepository.findOne({where: {id: id as ClientId},});
@@ -41,7 +43,7 @@ export class ClientRepository {
         }
 
         await this.clientRepository.update(id, client);
-    } 
+    }
 
     public async deleteClient(id: string): Promise<void> {
         await this.clientRepository.delete(id as ClientId);

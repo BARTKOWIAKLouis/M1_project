@@ -25,7 +25,7 @@ function App() {
 
         <HomeComponent
           title="Clients"
-          desciption="Manage your client relationships effectively. Access client information and purchase historyall in one place."
+          desciption="Manage your client relationships effectively. Access client information and purchase history all in one place."
           goTo={clientsRoute.to}
         />
 
