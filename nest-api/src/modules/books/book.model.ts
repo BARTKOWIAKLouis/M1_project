@@ -30,5 +30,5 @@ export type FilterBooksModel = {
 
 export type GetBooksModel = {
   totalCount: number;
-  data: {Books: BookModel, Sales_count: number}[];
+  data: { Books: BookModel; Sales_count: number }[];
 };
