@@ -3,6 +3,7 @@ import { Button, Col, Row, Image } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { FileImageFilled } from '@ant-design/icons'
+import { BookOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 
 interface BookListItemProps {
@@ -64,6 +65,7 @@ export function BookListItem({
             }}
           >
             <FileImageFilled style={{ fontSize: '32px', color: '#999' }} />
+            <BookOutlined style={{ fontSize: '32px', color: '#999' }} />
           </div>
         )}
       </Col>

@@ -4,13 +4,18 @@ import { useEffect } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as authorsRoute } from '../../../routes/authors'
+import { BookOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 
 interface AuthorDetailsProps {
   id: string
 }
 
 export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
-  const { isLoading, authorInfo, loadAuthorDetail } = useAuthorDetailProvider(id)
+  const { isLoading, authorInfo, loadAuthorDetail } =
+    useAuthorDetailProvider(id)
+  const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 300
 
   useEffect(() => {
     loadAuthorDetail()
@@ -29,12 +34,33 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
       </Link>
       <Row gutter={[32, 32]}>
         <Col span={8}>
-          <Image
-            src={authorInfo?.author.picture}
-            alt="Author Picture"
-            width={300}
-            style={{ borderRadius: '8px' }}
-          />
+          {authorInfo?.author.picture && !imageError ? (
+            <Image
+              src={authorInfo?.author.picture}
+              alt="Book Cover"
+              style={{
+                borderRadius: '3px',
+                width: `${IMAGE_WIDTH}px`,
+                margin: '0 0 0 60px',
+                objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+              }}
+              preview={false}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div
+              style={{
+                width: `${IMAGE_WIDTH}px`,
+                borderRadius: '3px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '0 0 0 60px',
+              }}
+            >
+              <BookOutlined style={{ fontSize: '32px', color: '#999' }} />
+            </div>
+          )}
         </Col>
         <Col span={16}>
           <Space direction="vertical" size="large">
@@ -58,23 +84,28 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
             </Typography.Text>
           ) : (
             authorInfo?.writtenBooks.map(book => (
-              <Row key={book.id}
-                    style={{
-                      width: '100%',
-                      height: '50px',
-                      borderRadius: '10px',
-                      backgroundColor: '#653239',
-                      padding: '.25rem',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                    onMouseEnter={(e) => {e.currentTarget.style.transform='scale(1.02)'}}
-                    onMouseLeave={(e) => {e.currentTarget.style.transform='scale(1)'}}
+              <Row
+                key={book.id}
+                style={{
+                  width: '100%',
+                  height: '50px',
+                  borderRadius: '10px',
+                  backgroundColor: '#653239',
+                  padding: '.25rem',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'scale(1.02)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'scale(1)'
+                }}
               >
                 <Link
                   to={`/books/$bookId`}
-                  params={{bookId: book.id}}
+                  params={{ bookId: book.id }}
                   style={{
                     color: 'white',
                     textAlign: 'center',
@@ -82,7 +113,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                   }}
                 >
                   <span>{book.title}</span>
-              </Link>
+                </Link>
               </Row>
             ))
           )}

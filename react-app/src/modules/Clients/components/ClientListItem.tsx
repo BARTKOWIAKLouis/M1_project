@@ -1,7 +1,9 @@
 import type { ClientModel } from '../ClientModel'
-import { Button, Col, Row, Image} from 'antd'
+import { Button, Col, Row, Image } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
+import { UserOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 
 interface ClientListItemProps {
   client: ClientModel
@@ -14,6 +16,9 @@ export function ClientListItem({
   purchaseCount,
   onDelete,
 }: ClientListItemProps) {
+  const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 30
+  const IMAGE_HEIGHT = 45
   return (
     <Row
       style={{
@@ -28,13 +33,35 @@ export function ClientListItem({
       }}
     >
       <Col span={1}>
-        <Image
-          src={client.picture}
-          alt="client picture"
-          height={1}
-          style={{ borderRadius: '3px' }}
-        />
-
+        {client.picture && !imageError ? (
+          <Image
+            src={client.picture}
+            alt="Book Cover"
+            style={{
+              borderRadius: '3px',
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
+              margin: '0 0 0 60px',
+              objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+            }}
+            preview={false}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div
+            style={{
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
+              borderRadius: '3px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '0 0 0 60px',
+            }}
+          >
+            <UserOutlined style={{ fontSize: '32px', color: '#999' }} />
+          </div>
+        )}
       </Col>
       <Col span={10} style={{ margin: 'auto 0' }}>
         <Link
@@ -46,10 +73,12 @@ export function ClientListItem({
             color: 'white',
           }}
         >
-          <span >{client.firstName}-{' '}{client.lastName}</span>
+          <span>
+            {client.firstName}- {client.lastName}
+          </span>
         </Link>
       </Col>
-      <Col span={5} style={{margin: 'auto 0' }}>
+      <Col span={5} style={{ margin: 'auto 0' }}>
         Purchases: <strong>{purchaseCount}</strong>
       </Col>
       <Col

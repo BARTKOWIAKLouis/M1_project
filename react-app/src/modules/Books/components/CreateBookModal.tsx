@@ -93,7 +93,6 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
               onChange={e => setPicture(e.target.value)}
             />
           </span>
-
           <span>
             <p>Author :</p>
             <Select
