@@ -5,3 +5,4 @@ dist/
 nest-api/db
 .gitattributes
 .editorconfig
+nest-api/src/routeTree.ts

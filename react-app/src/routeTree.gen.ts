@@ -66,11 +66,6 @@ const ClientsClientIdRoute = ClientsClientIdRouteImport.update({
   path: '/$clientId',
   getParentRoute: () => ClientsRoute,
 } as any)
-const ClientsClientIdRoute = ClientsClientIdRouteImport.update({
-  id: '/clients/$clientId',
-  path: '/clients/$clientId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BooksBookIdRoute = BooksBookIdRouteImport.update({
   id: '/$bookId',
   path: '/$bookId',
@@ -230,13 +225,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/clients/$clientId'
       preLoaderRoute: typeof ClientsClientIdRouteImport
       parentRoute: typeof ClientsRoute
-    }
-    '/clients/$clientId': {
-      id: '/clients/$clientId'
-      path: '/clients/$clientId'
-      fullPath: '/clients/$clientId'
-      preLoaderRoute: typeof ClientsClientIdRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/books/$bookId': {
       id: '/books/$bookId'
