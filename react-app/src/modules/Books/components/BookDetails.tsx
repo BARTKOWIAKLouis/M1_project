@@ -6,12 +6,14 @@ import { Link } from '@tanstack/react-router'
 import { Route as booksRoute } from '../../../routes/books'
 import { BookOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { EditBookModal } from './BookEditModal'
 interface BookDetailsProps {
   id: string
 }
 
 export const BookDetails = ({ id }: BookDetailsProps) => {
-  const { isLoading, bookInfo, loadBook } = useBookDetailsProvider(id)
+  const { isLoading, bookInfo, loadBook, updateBook } =
+    useBookDetailsProvider(id)
   const [imageError, setImageError] = useState(false)
   const IMAGE_WIDTH = 300
   useEffect(() => {
@@ -50,7 +52,7 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
       <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
         <Row gutter={[32, 32]}>
           <Col span={8}>
-            {bookInfo?.book.picture && !imageError ? (
+            {!imageError && bookInfo ? (
               <Image
                 src={bookInfo?.book.picture}
                 alt="Book Cover"
@@ -115,6 +117,22 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                 {bookInfo?.book.author.firstName}{' '}
                 {bookInfo?.book.author.lastName}
               </Typography.Title>
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+              >
+                <Typography.Title
+                  level={1}
+                  style={{ color: 'white', margin: 0 }}
+                >
+                  {bookInfo?.book.title}
+                </Typography.Title>
+                {bookInfo ? (
+                  <EditBookModal book={bookInfo.book} onUpdate={updateBook} />
+                ) : (
+                  <></>
+                )}
+              </div>
+
               <Typography.Title
                 level={3}
                 style={{ color: 'white', margin: 0, textAlign: 'left' }}

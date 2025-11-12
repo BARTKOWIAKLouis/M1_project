@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import type { BookModel } from '../BookModel'
+import axios from 'axios'
+import type { BookModel, UpdateBookModel } from '../BookModel'
 import type { ClientModel } from '../../Clients/ClientModel'
 
 export const useBookDetailsProvider = (id: string) => {
@@ -18,5 +19,14 @@ export const useBookDetailsProvider = (id: string) => {
       .finally(() => setIsLoading(false))
   }
 
-  return { isLoading, bookInfo, loadBook }
+  const updateBook = (id: string, input: UpdateBookModel) => {
+    setIsLoading(true)
+    axios
+      .patch(`http://localhost:3000/books/${id}`, input)
+      .then(data => setBookInfo(data.data))
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false))
+  }
+
+  return { isLoading, bookInfo, loadBook, updateBook }
 }
