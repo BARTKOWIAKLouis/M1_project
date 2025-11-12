@@ -14,7 +14,7 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
   const [yearPublished, setYearPublished] = useState(0)
   const [authorId, setAuthorId] = useState<string | undefined>(undefined)
   const { authorList, loadAuthors } = useAuthorsProviders()
-  const [picture, setPicture] = useState('')
+  const [picture, setPicture] = useState<undefined | string>(undefined)
 
   const onClose = () => {
     setTitle('')
@@ -62,7 +62,8 @@ export function CreateBookModal({ onCreate }: CreateBookModalProps) {
           onCreate({
             title,
             yearPublished,
-            authorId: '4540d533-3100-445a-8796-ab5dfd9a3240',
+            authorId: authorId!,
+            picture,
           })
           onClose()
         }}

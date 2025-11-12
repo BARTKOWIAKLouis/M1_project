@@ -20,6 +20,8 @@ export function BookListItem({
   // debug: log the picture URL to verify it's valid on the list page
   console.log('Book picture URL:', book)
   const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 30
+  const IMAGE_HEIGHT = 45
   return (
     <Row
       style={{
@@ -39,20 +41,26 @@ export function BookListItem({
           <Image
             src={book.picture}
             alt="Book Cover"
-            style={{ borderRadius: '3px', width: '60px', height: '90px' }}
+            style={{
+              borderRadius: '3px',
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
+              margin: '0 0 0 60px',
+              objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+            }}
             preview={false}
             onError={() => setImageError(true)}
           />
         ) : (
           <div
             style={{
-              width: '20px',
-              height: '30px',
+              width: `${IMAGE_WIDTH}px`,
+              height: `${IMAGE_HEIGHT}px`,
               borderRadius: '3px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: '0 0 0 70px',
+              padding: '0 0 0 60px',
             }}
           >
             <FileImageFilled style={{ fontSize: '32px', color: '#999' }} />

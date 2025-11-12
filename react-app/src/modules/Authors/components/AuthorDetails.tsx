@@ -1,5 +1,5 @@
 import { Image, Skeleton, Space, Typography, Row, Col } from 'antd'
-import { useAthorDetailProvider } from '../providers/useAuthorDetailProvider'
+import { useAuthorDetailProvider } from '../providers/useAuthorDetailProvider'
 import { useEffect } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
@@ -10,7 +10,7 @@ interface AuthorDetailsProps {
 }
 
 export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
-  const { isLoading, authorInfo, loadAuthorDetail } = useAthorDetailProvider(id)
+  const { isLoading, authorInfo, loadAuthorDetail } = useAuthorDetailProvider(id)
 
   useEffect(() => {
     loadAuthorDetail()
@@ -19,7 +19,6 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
   if (isLoading) {
     return <Skeleton active />
   }
-  console.log(authorInfo?.author)
 
   return (
     <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
@@ -59,17 +58,32 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
             </Typography.Text>
           ) : (
             authorInfo?.writtenBooks.map(book => (
-              <div
-                key={book.id}
-                style={{
-                  color: 'white',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  padding: '12px',
-                  borderRadius: '6px',
-                }}
+              <Row key={book.id}
+                    style={{
+                      width: '100%',
+                      height: '50px',
+                      borderRadius: '10px',
+                      backgroundColor: '#653239',
+                      padding: '.25rem',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                    onMouseEnter={(e) => {e.currentTarget.style.transform='scale(1.02)'}}
+                    onMouseLeave={(e) => {e.currentTarget.style.transform='scale(1)'}}
               >
-                {book.title})
-              </div>
+                <Link
+                  to={`/books/$bookId`}
+                  params={{bookId: book.id}}
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <span>{book.title}</span>
+              </Link>
+              </Row>
             ))
           )}
         </Space>

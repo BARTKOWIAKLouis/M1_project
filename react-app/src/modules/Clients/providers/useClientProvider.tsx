@@ -15,12 +15,13 @@ export const useClientProvider = () => {
     fetch('http://localhost:3000/clients')
       .then(response => response.json())
       .then(data => {
-        setClientList(data.data.data)
+        setClientList(data.data)
       })
       .catch(err => console.error(err))
   }
 
   const createClient = (client: CreateClientModel) => {
+    console.log(client)
     axios
       .post('http://localhost:3000/clients', client)
       .then(() => {

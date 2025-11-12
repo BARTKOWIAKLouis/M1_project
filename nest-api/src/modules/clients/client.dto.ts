@@ -8,6 +8,7 @@ export class CreateClientDto {
     lastName: string;
 
     @IsString()
+    @IsOptional()
     email?: string;
 
     @IsString()
