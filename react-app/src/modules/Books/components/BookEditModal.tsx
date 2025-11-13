@@ -7,9 +7,10 @@ import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders
 interface EditBookModalProps {
   book: BookModel
   onUpdate: (id: string, input: UpdateBookModel) => void
+  onUpdated?: () => void
 }
 
-export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
+export function EditBookModal({ book, onUpdate, onUpdated }: EditBookModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [title, setTitle] = useState(book.title)
   const [yearPublished, setYearPublished] = useState(book.yearPublished)
@@ -28,6 +29,10 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
   useEffect(() => {
     if (isOpen) {
       loadAuthors()
+      setTitle(book.title)
+      setYearPublished(book.yearPublished)
+      setAuthorId(book.author.id)
+      setPicture(book.picture)
     }
   }, [isOpen])
 
@@ -46,10 +51,15 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
       <Modal
         open={isOpen}
         onCancel={onClose}
-        onOk={() => {
+        onOk={async () => {
           if (!authorId) return
-          onUpdate(book.id, { title, yearPublished, authorId, picture })
-          onClose()
+          try {
+            await onUpdate(book.id, { title, yearPublished, authorId, picture })
+            onClose()
+            onUpdated?.()
+          } catch (err) {
+            console.error('Error updating book', err)
+          }
         }}
         okButtonProps={{
           disabled: !title || yearPublished == null || !authorId,

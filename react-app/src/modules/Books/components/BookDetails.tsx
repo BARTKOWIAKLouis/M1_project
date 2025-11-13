@@ -5,7 +5,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as booksRoute } from '../../../routes/books'
 import { RegisterSaleModal } from '../../Sales/components/RegisterSaleModal'
-import { useSaleProviders } from '../../Sales/providers/useSaleProviders'
+import { useSaleProvider } from '../../Sales/providers/useSaleProvider'
 
 import { BookOutlined } from '@ant-design/icons'
 import { useState } from 'react'
@@ -17,7 +17,7 @@ interface BookDetailsProps {
 export const BookDetails = ({ id }: BookDetailsProps) => {
   const { isLoading, bookInfo, loadBook, updateBook } =
     useBookDetailsProvider(id)
-  const { createSale } = useSaleProviders()
+  const { createSale } = useSaleProvider()
   const [imageError, setImageError] = useState(false)
   // const IMAGE_WIDTH = 300
   useEffect(() => {

@@ -19,13 +19,19 @@ export const useBookDetailsProvider = (id: string) => {
       .finally(() => setIsLoading(false))
   }
 
-  const updateBook = (id: string, input: UpdateBookModel) => {
+  const updateBook = async (id: string, input: UpdateBookModel) => {
     setIsLoading(true)
-    axios
-      .patch(`http://localhost:3000/books/${id}`, input)
-      .then(data => setBookInfo(data.data))
-      .catch(err => console.error(err))
-      .finally(() => setIsLoading(false))
+    try {
+      const res = await axios.patch(`http://localhost:3000/books/${id}`, input)
+      // after update, reload fresh book details (backend may not return same shape)
+      await loadBook()
+      return res
+    } catch (err) {
+      console.error(err)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return { isLoading, bookInfo, loadBook, updateBook }
