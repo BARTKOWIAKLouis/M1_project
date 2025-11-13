@@ -3,12 +3,14 @@ import{ ClientModel, CreateClientModel, FilterClientModel, UpdateClientModel } f
 import { BookModel } from "../books/book.model";
 import { ClientRepository } from "./client.repository";
 import { SalesRepository } from "../sales/sales.repository";
+import { BookRepository } from "../books/book.repository";
 
 @Injectable()
 export class ClientService {
     constructor(
         private readonly clientRepository: ClientRepository,
         private readonly salesRepository: SalesRepository,
+        private readonly bookRepository: BookRepository,
     ) {}
 
     public async getAllClients(input?: FilterClientModel): Promise<[{client : ClientModel, purchaseCount : number}[],number]>{ //Possibility to add pagination later
@@ -27,14 +29,22 @@ export class ClientService {
 
     }
 
-    public async GetClientInfo(id: string): Promise<[ClientModel, BookModel[],number] | undefined> {
+    public async GetClientInfo(id: string): Promise<[ClientModel, BookModel[] ,number] | undefined> {
         const client = await this.clientRepository.findClient(id);
         if (!client) {
             return undefined;
         }
 
-        const [purchasedBooks, purchaseCount] = await this.salesRepository.getClientPurchases(id);
-
+        const [booksId, purchaseCount] = await this.salesRepository.getClientPurchases(id);
+        if(booksId.length === 0){
+            return [client, [], purchaseCount];
+        }
+        const purchasedBooks = await Promise.all(
+            booksId.map(async (bookId) => {
+                const book = await this.bookRepository.findBook(bookId);
+                return book!;
+            }),
+        );
         return [client, purchasedBooks, purchaseCount];
     }
 
@@ -47,7 +57,7 @@ export class ClientService {
         if (!oldclient) {
             return undefined;
         }
-        
+
         return this.clientRepository.updateClient(id, client);
     }
 

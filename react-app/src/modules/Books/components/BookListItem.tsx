@@ -18,7 +18,6 @@ export function BookListItem({
   onDelete,
 }: BookListItemProps) {
   // debug: log the picture URL to verify it's valid on the list page
-  console.log('Book picture URL:', book)
   const [imageError, setImageError] = useState(false)
   const IMAGE_WIDTH = 30
   const IMAGE_HEIGHT = 45

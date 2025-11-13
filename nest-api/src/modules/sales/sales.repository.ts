@@ -37,18 +37,18 @@ export class SalesRepository {
 
         return this.saleRepository.save(this.saleRepository.create(sale));
     }
-    
-    public async getClientPurchases(id: string): Promise<[BookModel[], number]>{
+
+    public async getClientPurchases(id: string): Promise<[BookId[], number]>{
         // Get all sales from the sales repository where clientId matches the given id
         const [sales, totalCount] = await this.saleRepository.findAndCount({
             where: { clientId: id as ClientId },
             relations: { book: true },
         });
         // Extract the books from the sales
-        const books = sales.map((sale) => sale.book);
+        const books = sales.map((sale) => sale.bookId);
         return ( [books, totalCount] );
     }
-    
+
     public async getBookSales(id: string): Promise<[ClientModel[],number]>{
         const [sales, totalCount] = await this.saleRepository.findAndCount({
             where: { bookId: id as BookId },

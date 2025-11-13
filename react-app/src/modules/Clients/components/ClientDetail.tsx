@@ -19,9 +19,45 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
   if (isLoading) {
     return <Skeleton active />
   }
-  console.log(clientInfo?.client)
+
 
   return (
+    <>
+          <style>
+        {`
+      .scrollable-books::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-books::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.scrollable-books::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.scrollable-books::-webkit-scrollbar-track {
+  background: transparent;
+}
+  .scrollable-books {
+  position: relative;
+}
+
+.scrollable-books::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, transparent, rgba(101, 50, 57, 0.9));
+  pointer-events: none;
+}
+`}
+      </style>
     <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
       <Link to={clientsRoute.to}>
         <ArrowLeftOutlined
@@ -52,6 +88,21 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
         <Typography.Title level={4} style={{ color: 'white' }}>
           Books purchased by this client:
         </Typography.Title>
+
+        <div
+          style={{
+            marginTop: '20px',
+            maxHeight: '250px',
+            overflowY: 'auto',
+            paddingLeft: '30px',
+            paddingRight: '20px',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#b37a7a transparent',
+            width: '95%',
+            marginLeft: '0',
+          }}
+          className="scrollable-books"
+        ></div>
         <Space direction="vertical" style={{ width: '100%' }}>
           {clientInfo?.purchasedBooks.length === 0 ? (
             <Typography.Text style={{ color: 'white' }}>
@@ -59,22 +110,50 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
             </Typography.Text>
           ) : (
             clientInfo?.purchasedBooks.map(book => (
-              <div
-                key={book.id}
-                style={{
-                  color: 'white',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  padding: '12px',
-                  borderRadius: '6px',
-                }}
-              >
-                {book.title} {book.author.firstName} ({book.author.lastName}) -{' '}
-                {book.yearPublished}
-              </div>
+              <Row
+                  key={book.id}
+                  style={{
+                    width: '100%',
+                    height: '50px',
+                    borderRadius: '10px',
+                    backgroundColor: '#653239',
+                    padding: '.25rem 1rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    transition:
+                      'transform 0.2s ease, background-color 0.3s ease',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'scale(1.02)'
+                    e.currentTarget.style.backgroundColor = '#7d3a43'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'scale(1)'
+                    e.currentTarget.style.backgroundColor = '#653239'
+                  }}
+                >
+                  <Link
+                    to={`/books/$bookId`}
+                    params={{ bookId: book.id }}
+                    style={{
+                      color: 'white',
+                      textAlign: 'center',
+                      width: '100%',
+                      fontWeight: 500,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <span>{book.title} of {book.author.firstName} {book.author.lastName}</span>
+                  </Link>
+                </Row>
+
             ))
           )}
         </Space>
       </div>
     </Space>
+    </>
   )
 }
