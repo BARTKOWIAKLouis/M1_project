@@ -44,7 +44,7 @@ export function AuthorListItem({
               width: `${IMAGE_WIDTH}px`,
               height: `${IMAGE_HEIGHT}px`,
               margin: '0 0 0 60px',
-              objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+              objectFit: 'cover',
             }}
             preview={false}
             onError={() => setImageError(true)}

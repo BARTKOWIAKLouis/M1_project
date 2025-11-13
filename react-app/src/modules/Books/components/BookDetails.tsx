@@ -169,6 +169,8 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                     backgroundColor: 'rgba(255, 255, 255, 0.05)',
                     borderRadius: '8px',
                     padding: '15px',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#b37a7a transparent',
                   }}
                 >
                   <Typography.Title
