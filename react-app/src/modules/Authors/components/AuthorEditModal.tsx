@@ -21,10 +21,10 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
     setIsOpen(false)
   }
 
-  const onSave = () => {
-    onUpdate(author.id, { firstName, lastName, picture })
-    onClose()
-  }
+  //   const onSave = () => {
+  //     onUpdate(author.id, { firstName, lastName, picture })
+  //     onClose()
+  //   }
 
   return (
     <>
@@ -41,7 +41,11 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
       <Modal
         open={isOpen}
         onCancel={onClose}
-        onOk={onSave}
+        onOk={() => {
+          if (!author.id) return
+          onUpdate(author.id, { firstName, lastName, picture })
+          onClose()
+        }}
         okButtonProps={{
           disabled: !firstName.trim() || !lastName.trim(),
         }}
