@@ -74,7 +74,7 @@ export function Layout({ children }: LayoutProps) {
       <Space
         direction="vertical"
         style={{
-          width: '100%',
+          width: '100vw',
           height: '100vh',
           backgroundColor: '#CCC7B9',
         }}
@@ -95,7 +95,9 @@ export function Layout({ children }: LayoutProps) {
           <Menu
             mode="horizontal"
             items={items}
-            style={{ backgroundColor: '#EAF9D9' }}
+            style={{
+              backgroundColor: '#EAF9D9',
+            }}
           />
         </div>
         <div

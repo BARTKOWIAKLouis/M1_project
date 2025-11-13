@@ -20,10 +20,9 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
     return <Skeleton active />
   }
 
-
   return (
     <>
-          <style>
+      <style>
         {`
       .scrollable-books::-webkit-scrollbar {
   width: 8px;
@@ -58,59 +57,59 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
 }
 `}
       </style>
-    <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
-      <Link to={clientsRoute.to}>
-        <ArrowLeftOutlined
-          style={{ color: 'white', fontSize: '20px', marginLeft: '-100%' }}
-        />
-      </Link>
-      <Row gutter={[32, 32]}>
-        <Col span={8}>
-          <Image
-            src={clientInfo?.client.picture}
-            alt="Client Picture"
-            width={300}
-            style={{ borderRadius: '8px' }}
+      <Space direction="vertical" style={{ width: '95%', padding: '20px' }}>
+        <Link to={clientsRoute.to}>
+          <ArrowLeftOutlined
+            style={{ color: 'white', fontSize: '20px', marginLeft: '-100%' }}
           />
-        </Col>
-        <Col span={16}>
-          <Space direction="vertical" size="large">
-            <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
-              {clientInfo?.client.firstName} {clientInfo?.client.lastName}
-            </Typography.Title>
-            <Typography.Title level={2} style={{ color: 'white', margin: 0 }}>
-              {clientInfo?.client.email}
-            </Typography.Title>
-          </Space>
-        </Col>
-      </Row>
-      <div style={{ marginTop: '40px' }}>
-        <Typography.Title level={4} style={{ color: 'white' }}>
-          Books purchased by this client:
-        </Typography.Title>
+        </Link>
+        <Row gutter={[32, 32]}>
+          <Col span={8}>
+            <Image
+              src={clientInfo?.client.picture}
+              alt="Client Picture"
+              width={300}
+              style={{ borderRadius: '8px' }}
+            />
+          </Col>
+          <Col span={16}>
+            <Space direction="vertical" size="large">
+              <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
+                {clientInfo?.client.firstName} {clientInfo?.client.lastName}
+              </Typography.Title>
+              <Typography.Title level={2} style={{ color: 'white', margin: 0 }}>
+                {clientInfo?.client.email}
+              </Typography.Title>
+            </Space>
+          </Col>
+        </Row>
+        <div style={{ marginTop: '40px' }}>
+          <Typography.Title level={4} style={{ color: 'white' }}>
+            Books purchased by this client:
+          </Typography.Title>
 
-        <div
-          style={{
-            marginTop: '20px',
-            maxHeight: '250px',
-            overflowY: 'auto',
-            paddingLeft: '30px',
-            paddingRight: '20px',
-            scrollbarWidth: 'thin',
-            scrollbarColor: '#b37a7a transparent',
-            width: '95%',
-            marginLeft: '0',
-          }}
-          className="scrollable-books"
-        ></div>
-        <Space direction="vertical" style={{ width: '100%' }}>
-          {clientInfo?.purchasedBooks.length === 0 ? (
-            <Typography.Text style={{ color: 'white' }}>
-              This client has not purchased any books.
-            </Typography.Text>
-          ) : (
-            clientInfo?.purchasedBooks.map(book => (
-              <Row
+          <div
+            style={{
+              marginTop: '20px',
+              maxHeight: '250px',
+              overflowY: 'auto',
+              paddingLeft: '30px',
+              paddingRight: '20px',
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#b37a7a transparent',
+              width: '95%',
+              marginLeft: '0',
+            }}
+            className="scrollable-books"
+          ></div>
+          <Space direction="vertical" style={{ width: '100%' }}>
+            {clientInfo?.purchasedBooks.length === 0 ? (
+              <Typography.Text style={{ color: 'white' }}>
+                This client has not purchased any books.
+              </Typography.Text>
+            ) : (
+              clientInfo?.purchasedBooks.map(book => (
+                <Row
                   key={book.id}
                   style={{
                     width: '100%',
@@ -145,15 +144,17 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
                       textDecoration: 'none',
                     }}
                   >
-                    <span>{book.title} of {book.author.firstName} {book.author.lastName}</span>
+                    <span>
+                      {book.title} of {book.author.firstName}{' '}
+                      {book.author.lastName}
+                    </span>
                   </Link>
                 </Row>
-
-            ))
-          )}
-        </Space>
-      </div>
-    </Space>
+              ))
+            )}
+          </Space>
+        </div>
+      </Space>
     </>
   )
 }

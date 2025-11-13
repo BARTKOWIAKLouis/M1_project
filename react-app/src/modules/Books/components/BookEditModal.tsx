@@ -10,7 +10,11 @@ interface EditBookModalProps {
   onUpdated?: () => void
 }
 
-export function EditBookModal({ book, onUpdate, onUpdated }: EditBookModalProps) {
+export function EditBookModal({
+  book,
+  onUpdate,
+  onUpdated,
+}: EditBookModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [title, setTitle] = useState(book.title)
   const [yearPublished, setYearPublished] = useState(book.yearPublished)

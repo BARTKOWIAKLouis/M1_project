@@ -1,4 +1,4 @@
-import type { BookModel, UpdateBookModel } from '../BookModel'
+import type { BookModel } from '../BookModel'
 import { Button, Col, Row, Image } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
@@ -9,7 +9,6 @@ interface BookListItemProps {
   book: BookModel
   sales_count: number
   onDelete: (id: string) => void
-  onUpdate: (id: string, input: UpdateBookModel) => void
 }
 
 export function BookListItem({

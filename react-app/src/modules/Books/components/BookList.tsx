@@ -4,8 +4,7 @@ import { BookListItem } from './BookListItem'
 import { CreateBookModal } from './CreateBookModal'
 
 export function BookList() {
-  const { bookList, loadBooks, deleteBook, updateBook, createBook } =
-    useBookProvider()
+  const { bookList, loadBooks, deleteBook, createBook } = useBookProvider()
 
   useEffect(() => {
     loadBooks()
@@ -55,14 +54,15 @@ export function BookList() {
         style={{
           padding: '0 .5rem',
           marginTop: '20px',
-          maxHeight: '100%',
+          height: '70vh',
           overflowY: 'auto',
           paddingLeft: '30px',
           paddingRight: '20px',
           scrollbarWidth: 'thin',
           scrollbarColor: '#b37a7a transparent',
           width: '95%',
-          marginLeft: '0',
+          marginLeft: '0.5%',
+          backgroundColor: 'rgba(255,255,255,0.1)',
         }}
         className="scrollable-books"
       >
@@ -72,7 +72,6 @@ export function BookList() {
             book={item.Books}
             sales_count={item.Sales_count}
             onDelete={deleteBook}
-            onUpdate={updateBook}
           />
         ))}
       </div>

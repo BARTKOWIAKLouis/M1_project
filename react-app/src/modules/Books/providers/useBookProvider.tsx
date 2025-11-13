@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { BookModel, CreateBookModel, UpdateBookModel } from '../BookModel'
+import type { BookModel, CreateBookModel } from '../BookModel'
 import axios from 'axios'
 
 export const useBookProvider = () => {
@@ -26,16 +26,6 @@ export const useBookProvider = () => {
       .catch(err => console.error(err))
   }
 
-  const updateBook = (id: string, input: UpdateBookModel) => {
-    axios
-      .patch(`http://localhost:3000/books/${id}`, input)
-      .then(() => {
-        //Refresh the book list after update
-        loadBooks()
-      })
-      .catch(err => console.error(err))
-  }
-
   const deleteBook = (id: string) => {
     axios
       .delete(`http://localhost:3000/books/${id}`)
@@ -46,5 +36,5 @@ export const useBookProvider = () => {
       .catch(err => console.error(err))
   }
 
-  return { bookList, loadBooks, createBook, updateBook, deleteBook }
+  return { bookList, loadBooks, createBook, deleteBook }
 }

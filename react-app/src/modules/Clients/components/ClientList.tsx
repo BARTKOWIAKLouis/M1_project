@@ -16,7 +16,13 @@ export function ClientList() {
       <CreateClientModal onCreate={createClient} />
 
       {/* List all clients items with its number of sales */}
-      <div style={{ padding: '0 .5rem' }}>
+      <div
+        style={{
+          padding: '0 .5rem',
+          backgroundColor: 'white',
+          marginTop: '20px',
+        }}
+      >
         {clientList ? (
           clientList.map(item => (
             <ClientListItem

@@ -87,7 +87,7 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
               </Col>
 
               {/* Détails du livre */}
-              <Col span={16}>
+              <Col span={12}>
                 <Space
                   direction="vertical"
                   size="large"
@@ -165,12 +165,11 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                 {/* List clients */}
                 <div
                   style={{
-                    width: '100%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    width: '40vw',
+                    height: '60vh',
+                    backgroundColor: 'rgba(255, 255, 255, 0.26)',
                     borderRadius: '8px',
                     padding: '15px',
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: '#b37a7a transparent',
                   }}
                 >
                   <Typography.Title
@@ -178,7 +177,7 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                     style={{
                       color: 'white',
                       marginBottom: '10px',
-                      textAlign: 'right',
+                      textAlign: 'center',
                     }}
                   >
                     Clients who purchased this book:
@@ -187,8 +186,13 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                   <Space
                     direction="vertical"
                     style={{
+                      display: 'flex',
+                      alignItems: 'stretch',
                       width: '100%',
-                      alignItems: 'flex-end',
+                      height: '85%',
+                      overflowY: 'auto',
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: '#b37a7a transparent',
                     }}
                   >
                     {bookInfo?.clients.length === 0 ? (
@@ -197,21 +201,44 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                       </Typography.Text>
                     ) : (
                       bookInfo?.clients.map(client => (
-                        <div
+                        <Row
                           key={client.id}
                           style={{
-                            color: 'white',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            padding: '10px',
-                            borderRadius: '6px',
                             width: '100%',
-                            height: 'auto',
-                            maxHeight: '60px',
-                            textAlign: 'right',
+                            height: '50px',
+                            borderRadius: '10px',
+                            backgroundColor: '#653239',
+                            padding: '.25rem 1rem',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            transition:
+                              'transform 0.2s ease, background-color 0.3s ease',
+                            cursor: 'pointer',
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.backgroundColor = '#7d3a43'
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.backgroundColor = '#653239'
                           }}
                         >
-                          {client.firstName} {client.lastName} ({client.email})
-                        </div>
+                          <Link
+                            to={`/clients/$clientId`}
+                            params={{ clientId: client.id }}
+                            style={{
+                              color: 'white',
+                              textAlign: 'center',
+                              width: '100%',
+                              fontWeight: 500,
+                              textDecoration: 'none',
+                            }}
+                          >
+                            <span>
+                              {client.firstName} {client.lastName}
+                            </span>
+                          </Link>
+                        </Row>
                       ))
                     )}
                   </Space>

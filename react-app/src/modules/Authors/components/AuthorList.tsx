@@ -55,7 +55,7 @@ export function AuthorList() {
         style={{
           padding: '0 .5rem',
           marginTop: '20px',
-          maxHeight: '250px',
+          height: '70vh',
           overflowY: 'auto',
           paddingLeft: '30px',
           paddingRight: '20px',
