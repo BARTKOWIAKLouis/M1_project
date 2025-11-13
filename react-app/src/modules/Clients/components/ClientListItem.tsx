@@ -1,9 +1,9 @@
 import type { ClientModel } from '../ClientModel'
-import { Button, Col, Row, Image } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Col, Row, Image } from 'antd'
 import { Link } from '@tanstack/react-router'
 import { UserOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { DeleteModal } from '../../deleteModal'
 
 interface ClientListItemProps {
   client: ClientModel
@@ -90,9 +90,7 @@ export function ClientListItem({
           margin: 'auto 0',
         }}
       >
-        <Button type="primary" danger onClick={() => onDelete(client.id)}>
-          <DeleteOutlined />
-        </Button>
+        <DeleteModal id={client.id} onDelete={onDelete} />
       </Col>
     </Row>
   )

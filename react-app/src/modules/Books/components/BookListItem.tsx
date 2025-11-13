@@ -1,9 +1,9 @@
 import type { BookModel } from '../BookModel'
-import { Button, Col, Row, Image } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Col, Row, Image } from 'antd'
 import { Link } from '@tanstack/react-router'
 import { BookOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { DeleteModal } from '../../deleteModal'
 
 interface BookListItemProps {
   book: BookModel
@@ -99,9 +99,7 @@ export function BookListItem({
             margin: 'auto 0',
           }}
         >
-          <Button type="primary" danger onClick={() => onDelete(book.id)}>
-            <DeleteOutlined />
-          </Button>
+          <DeleteModal id={book.id} onDelete={onDelete} />
         </Col>
       </Row>
     </>

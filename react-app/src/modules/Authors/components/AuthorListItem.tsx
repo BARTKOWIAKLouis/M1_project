@@ -1,10 +1,10 @@
 // import { useState } from 'react'
 import type { AuthorModel } from '../AuthorModel'
-import { Button, Col, Row, Image } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Col, Row, Image } from 'antd'
 import { Link } from '@tanstack/react-router'
 import { SignatureOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { DeleteModal } from '../../deleteModal'
 
 interface AuthorListItemProps {
   author: AuthorModel
@@ -96,9 +96,7 @@ export function AuthorListItem({
           margin: 'auto 0',
         }}
       >
-        <Button type="primary" danger onClick={() => onDelete(author.id)}>
-          <DeleteOutlined />
-        </Button>
+        <DeleteModal id={author.id} onDelete={onDelete} />
       </Col>
     </Row>
   )

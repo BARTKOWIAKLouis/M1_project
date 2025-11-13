@@ -1,0 +1,49 @@
+import { useState } from 'react'
+import { Button, Modal, Space } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
+
+interface deleteModalProps {
+  id: string
+  onDelete: (id: string) => void
+}
+
+export function DeleteModal({ id, onDelete }: deleteModalProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const onClose = () => {
+    setIsOpen(false)
+  }
+
+  return (
+    <>
+      {/* <style>
+        {`
+        .ant-modal .ant-modal-content {
+          background-color: #E2D4BA;
+          color: #653239;
+
+          .ant-input {
+          border-bottom: 2px solid #653239;
+          background-color: transparent;
+          color: #653239;
+          }
+        `}
+      </style> */}
+      <Button type="primary" danger onClick={() => setIsOpen(true)}>
+        <DeleteOutlined />
+      </Button>
+      <Modal
+        open={isOpen}
+        onCancel={onClose}
+        onOk={() => {
+          onDelete(id)
+          onClose()
+        }}
+      >
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <span>Are you sure you want to delete this item ?</span>
+        </Space>
+      </Modal>
+    </>
+  )
+}
