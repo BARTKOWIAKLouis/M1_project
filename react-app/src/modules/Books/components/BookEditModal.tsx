@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { UpdateBookModel, BookModel } from '../BookModel'
 import { Button, Input, Modal, Select, Space } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
+import { EditOutlined } from '@ant-design/icons'
 import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders'
 
 interface EditBookModalProps {
@@ -34,16 +34,14 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
   return (
     <>
       <Button
-        icon={<SaveOutlined />}
+        icon={<EditOutlined style={{ fontSize: '20px' }} />}
         style={{
-          backgroundColor: '#fff',
-          borderColor: '#653239',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           color: '#653239',
         }}
         onClick={() => setIsOpen(true)}
-      >
-        Modifier
-      </Button>
+      ></Button>
 
       <Modal
         open={isOpen}
