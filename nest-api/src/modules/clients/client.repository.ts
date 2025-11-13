@@ -17,7 +17,7 @@ export class ClientRepository {
     private readonly clientRepository: Repository<ClientEntity>,
     @InjectRepository(SaleEntity)
     private readonly saleRepository: Repository<SaleEntity>,
-  ) { }
+  ) {}
 
   public async getAllClients(
     input?: FilterClientModel,

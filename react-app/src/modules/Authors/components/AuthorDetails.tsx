@@ -16,7 +16,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
   const { isLoading, authorInfo, loadAuthorDetail, updateAuthor } =
     useAuthorDetailProvider(id)
   const [imageError, setImageError] = useState(false)
-  const IMAGE_WIDTH = 300
+  const IMAGE_WIDTH = 65
 
   useEffect(() => {
     loadAuthorDetail()
@@ -76,7 +76,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                 src={authorInfo?.author.picture}
                 alt="Book Cover"
                 style={{
-                  borderRadius: '3px',
+                  borderRadius: '100%',
                   width: `${IMAGE_WIDTH}px`,
                   margin: '0 0 0 60px',
                   objectFit: 'cover',
@@ -88,7 +88,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
               <div
                 style={{
                   width: `${IMAGE_WIDTH}px`,
-                  borderRadius: '3px',
+                  borderRadius: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
