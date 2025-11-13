@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { UpdateAuthorModel, AuthorModel } from '../AuthorModel'
 import { Button, Input, Modal, Space } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
@@ -20,6 +20,14 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
     setPicture(author.picture)
     setIsOpen(false)
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setFirstName(author.firstName)
+      setLastName(author.lastName)
+      setPicture(author.picture)
+    }
+  }, [isOpen])
 
   //   const onSave = () => {
   //     onUpdate(author.id, { firstName, lastName, picture })

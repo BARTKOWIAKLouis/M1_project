@@ -7,13 +7,11 @@ import { useAuthorsProviders } from '../../Authors/providers/useAuthorsProviders
 interface EditBookModalProps {
   book: BookModel
   onUpdate: (id: string, input: UpdateBookModel) => void
-  onUpdated?: () => void
 }
 
 export function EditBookModal({
   book,
   onUpdate,
-  onUpdated,
 }: EditBookModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [title, setTitle] = useState(book.title)
@@ -32,11 +30,12 @@ export function EditBookModal({
 
   useEffect(() => {
     if (isOpen) {
-      loadAuthors()
+      // loadAuthors()
       setTitle(book.title)
       setYearPublished(book.yearPublished)
       setAuthorId(book.author.id)
       setPicture(book.picture)
+      loadAuthors()
     }
   }, [isOpen])
 
@@ -60,7 +59,6 @@ export function EditBookModal({
           try {
             await onUpdate(book.id, { title, yearPublished, authorId, picture })
             onClose()
-            onUpdated?.()
           } catch (err) {
             console.error('Error updating book', err)
           }
@@ -68,7 +66,7 @@ export function EditBookModal({
         okButtonProps={{
           disabled: !title || yearPublished == null || !authorId,
         }}
-        title="Modifier le livre"
+        title="Modify Book"
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>

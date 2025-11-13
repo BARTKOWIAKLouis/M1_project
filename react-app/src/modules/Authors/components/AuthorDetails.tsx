@@ -21,11 +21,9 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
   useEffect(() => {
     loadAuthorDetail()
   }, [id])
-
   if (isLoading) {
     return <Skeleton active />
   }
-
   return (
     <>
       <style>
@@ -102,7 +100,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
           <Col span={16}>
             <Space direction="vertical" size="large">
               <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
-                {authorInfo?.author.firstName} {authorInfo?.author.lastName}
+                {authorInfo?.author.firstName} {authorInfo?.author.lastName} {' '}
                 {authorInfo && (
                   <EditAuthorModal
                     author={authorInfo.author}
@@ -110,6 +108,9 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                   />
                 )}
               </Typography.Title>
+              <Typography.Text style={{ color: 'white', fontSize: '16px' }}>
+                Average author sales : {authorInfo?.averageSales.toFixed(2)}
+              </Typography.Text>
             </Space>
           </Col>
         </Row>

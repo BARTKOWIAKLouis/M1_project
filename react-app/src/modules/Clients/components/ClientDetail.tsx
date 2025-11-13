@@ -4,13 +4,14 @@ import { useEffect } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as clientsRoute } from '../../../routes/clients'
+import { EditClientModal } from './EditClientModal'
 
 interface ClientDetailsProps {
   id: string
 }
 
 export const ClientDetails = ({ id }: ClientDetailsProps) => {
-  const { isLoading, clientInfo, loadClient } = useClientDetailProvider(id)
+  const { isLoading, clientInfo, loadClient, updateclient } = useClientDetailProvider(id)
 
   useEffect(() => {
     loadClient()

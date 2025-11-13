@@ -10,7 +10,7 @@ export const useAuthorDetailProvider = (id: string) => {
     author: AuthorModel
     writtenBooks: BookModel[]
     totalCount: number
-    AverageSales: number
+    averageSales: number
   } | null>(null)
 
   const loadAuthorDetail = () => {
@@ -21,10 +21,18 @@ export const useAuthorDetailProvider = (id: string) => {
       .finally(() => setIsLoading(false))
   }
 
-  const updateAuthor = (id: string, input: UpdateAuthorModel) => {
-    axios
-      .patch(`http://localhost:3000/authors/${id}`, input)
-      .catch(err => console.error(err))
+  const updateAuthor = async (id: string, input: UpdateAuthorModel) => {
+    setIsLoading(true)
+    try{
+      const res = await axios.patch(`http://localhost:3000/authors/${id}`, input)
+      await loadAuthorDetail() // reload fresh author details
+      return res
+    }catch(err){
+      console.error(err)
+      throw err
+    } finally{
+      setIsLoading(false)
+    }
   }
 
   return { isLoading, authorInfo, loadAuthorDetail, updateAuthor }

@@ -31,11 +31,8 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
   return (
     <>
       <div style={{ width: '95%', padding: '20px' }}>
-        {/* Ligne principale : flèche gauche + contenu + colonne droite */}
         <Row gutter={[32, 32]} align="top">
-          {/* Colonne gauche : flèche + image + infos */}
           <Col span={16}>
-            {/* Ligne du haut : flèche + bouton modifier à côté du titre */}
             <div
               style={{
                 marginBottom: '20px',
@@ -97,7 +94,6 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                     paddingLeft: '10%',
                   }}
                 >
-                  {/* Titre + bouton Modifier */}
                   <div
                     style={{
                       display: 'flex',
