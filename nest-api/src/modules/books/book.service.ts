@@ -11,28 +11,36 @@ import { ClientModel } from '../clients/client.model';
 
 @Injectable()
 export class BookService {
-  constructor(private readonly bookRepository: BookRepository, private readonly salesRepository: SalesRepository) {}
+  constructor(
+    private readonly bookRepository: BookRepository,
+    private readonly salesRepository: SalesRepository,
+  ) {}
 
-  public async getAllBooks(input?: FilterBooksModel,): Promise<[{Books : BookModel, Sales_count: number}[], number]> {
+  public async getAllBooks(
+    input?: FilterBooksModel,
+  ): Promise<[{ Books: BookModel; Sales_count: number }[], number]> {
     const [books, totalCount] = await this.bookRepository.getAllBooks(input);
     //Map through each book to get their sales count
     const booksWithSalesCounts = await Promise.all(
       books.map(async (book) => {
-        const [ , salesCount ] = await this.salesRepository.getBookSales(book.id);
-        return {Books :book, Sales_count :salesCount};
+        const [, salesCount] = await this.salesRepository.getBookSales(book.id);
+        return { Books: book, Sales_count: salesCount };
       }),
     );
     return [booksWithSalesCounts, totalCount];
   }
 
-  public async getBookInfo(id: string): Promise<[BookModel, ClientModel[], number ]| undefined> {
+  public async getBookInfo(
+    id: string,
+  ): Promise<[BookModel, ClientModel[], number] | undefined> {
     const book = await this.bookRepository.findBook(id);
 
     if (!book) {
       return undefined;
     }
 
-    const [purchasingClients, purchaseCount] = await this.salesRepository.getBookSales(id);
+    const [purchasingClients, purchaseCount] =
+      await this.salesRepository.getBookSales(id);
 
     return [book, purchasingClients, purchaseCount];
   }

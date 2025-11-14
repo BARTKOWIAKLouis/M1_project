@@ -1,14 +1,14 @@
-import { SaleId } from "./sales.entity";
+import { SaleId } from './sales.entity';
 
 export type SaleModel = {
-    id: SaleId;
-    clientId: string;
-    bookId: string;
-    saleDate: Date;
+  id: SaleId;
+  clientId: string;
+  bookId: string;
+  saleDate: Date;
 };
 
 export type CreateSaleModel = {
-    clientId: string;
-    bookId: string;
-    saleDate: Date;
+  clientId: string;
+  bookId: string;
+  saleDate: Date;
 };

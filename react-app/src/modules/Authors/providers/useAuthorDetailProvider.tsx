@@ -23,14 +23,17 @@ export const useAuthorDetailProvider = (id: string) => {
 
   const updateAuthor = async (id: string, input: UpdateAuthorModel) => {
     setIsLoading(true)
-    try{
-      const res = await axios.patch(`http://localhost:3000/authors/${id}`, input)
+    try {
+      const res = await axios.patch(
+        `http://localhost:3000/authors/${id}`,
+        input,
+      )
       await loadAuthorDetail() // reload fresh author details
       return res
-    }catch(err){
+    } catch (err) {
       console.error(err)
       throw err
-    } finally{
+    } finally {
       setIsLoading(false)
     }
   }

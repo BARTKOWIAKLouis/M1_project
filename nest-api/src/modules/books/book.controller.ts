@@ -37,13 +37,17 @@ export class BookController {
   }
 
   @Get(':id')
-  public async getBook(@Param('id') id: string): Promise<{data:{book: BookModel, clients: ClientModel[], number}| undefined}> {
+  public async getBook(
+    @Param('id') id: string,
+  ): Promise<{
+    data: { book: BookModel; clients: ClientModel[]; number } | undefined;
+  }> {
     const bookInfo = await this.bookService.getBookInfo(id);
     if (!bookInfo) {
-      return {data: undefined};
+      return { data: undefined };
     }
     const [book, clients, number] = bookInfo;
-    return {data: {book, clients, number}};
+    return { data: { book, clients, number } };
   }
 
   @Post()

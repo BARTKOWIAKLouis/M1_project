@@ -56,10 +56,10 @@ export class BookRepository {
     };
   }
 
-  public async GetAuthorBooks(id: string): Promise<[BookModel[], number]>{
+  public async GetAuthorBooks(id: string): Promise<[BookModel[], number]> {
     return this.bookRepository.findAndCount({
-      where :{authorId: id as AuthorId}
-    })
+      where: { authorId: id as AuthorId },
+    });
   }
 
   public async createBook(book: CreateBookModel): Promise<BookModel> {

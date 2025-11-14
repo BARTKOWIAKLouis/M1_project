@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { AuthorModel, CreateAuthorModel, FilterAuthorModel, UpdateAuthorModel } from './author.model';
+import {
+  AuthorModel,
+  CreateAuthorModel,
+  FilterAuthorModel,
+  UpdateAuthorModel,
+} from './author.model';
 import { AuthorEntity, AuthorId } from './author.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,37 +17,50 @@ export class AuthorRepository {
     private readonly authorRepository: Repository<AuthorEntity>,
   ) {}
 
-  public async getAllAuthors(input?: FilterAuthorModel): Promise<[AuthorModel[], number]> {
-    const [authors, totalCount] = await this.authorRepository.findAndCount({take: input?.limit, skip: input?.offset, order: input?.sort});
+  public async getAllAuthors(
+    input?: FilterAuthorModel,
+  ): Promise<[AuthorModel[], number]> {
+    const [authors, totalCount] = await this.authorRepository.findAndCount({
+      take: input?.limit,
+      skip: input?.offset,
+      order: input?.sort,
+    });
 
-    return [authors,totalCount];
+    return [authors, totalCount];
   }
 
-  public async findAuthor(id: string): Promise<AuthorModel|undefined>{
-    const author = await this.authorRepository.findOne({where: {id: id as AuthorId}})
+  public async findAuthor(id: string): Promise<AuthorModel | undefined> {
+    const author = await this.authorRepository.findOne({
+      where: { id: id as AuthorId },
+    });
 
-    if (!author){
-      return undefined
+    if (!author) {
+      return undefined;
     }
-    
-    return author
+
+    return author;
   }
 
   public async createAuthor(author: CreateAuthorModel): Promise<AuthorModel> {
     return this.authorRepository.save(this.authorRepository.create(author));
   }
 
-  public async updateAuthor(id: string, author: UpdateAuthorModel): Promise<AuthorModel|undefined>{
-    const oldAuthor = await this.authorRepository.findOne({where: {id: id as AuthorId},});
+  public async updateAuthor(
+    id: string,
+    author: UpdateAuthorModel,
+  ): Promise<AuthorModel | undefined> {
+    const oldAuthor = await this.authorRepository.findOne({
+      where: { id: id as AuthorId },
+    });
 
-    if(!oldAuthor){
-      return undefined
+    if (!oldAuthor) {
+      return undefined;
     }
 
     await this.authorRepository.update(id, author);
   }
 
-  public async deleteAuthor(id: string): Promise<void>{
+  public async deleteAuthor(id: string): Promise<void> {
     await this.authorRepository.delete(id);
   }
 }

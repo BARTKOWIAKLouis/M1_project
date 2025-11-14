@@ -1,13 +1,12 @@
-import { IsDate, IsString } from "class-validator";
+import { IsDate, IsString } from 'class-validator';
 
 export class CreateSaleDto {
+  @IsString()
+  clientId: string;
 
-    @IsString()
-    clientId: string;
+  @IsString()
+  bookId: string;
 
-    @IsString()
-    bookId: string;
-
-    @IsDate()
-    saleDate: Date;
+  @IsDate()
+  saleDate: Date;
 }

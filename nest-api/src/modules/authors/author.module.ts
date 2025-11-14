@@ -11,7 +11,14 @@ import { SaleEntity } from '../sales/sales.entity';
 import { ClientEntity } from '../clients/clients.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AuthorEntity, BookEntity, SaleEntity, ClientEntity])],
+  imports: [
+    TypeOrmModule.forFeature([
+      AuthorEntity,
+      BookEntity,
+      SaleEntity,
+      ClientEntity,
+    ]),
+  ],
   controllers: [AuthorController],
   providers: [AuthorRepository, AuthorService, BookRepository, SalesRepository],
 })

@@ -4,5 +4,3 @@ import { AuthorsPage } from '../../modules/pages/AuthorsPage'
 export const Route = createFileRoute('/authors/')({
   component: AuthorsPage,
 })
-
-

@@ -1,13 +1,13 @@
-import {Body, Controller, Post} from "@nestjs/common";
-import { SalesService } from "./sales.service";
-import { CreateSaleDto } from "./sales.dto";
+import { Body, Controller, Post } from '@nestjs/common';
+import { SalesService } from './sales.service';
+import { CreateSaleDto } from './sales.dto';
 
-@Controller("sales")
+@Controller('sales')
 export class SalesController {
-    constructor(private readonly salesService: SalesService) {}
+  constructor(private readonly salesService: SalesService) {}
 
-    @Post()
-    createSale(@Body() createSaleDto: CreateSaleDto) {
-        return this.salesService.createSale(createSaleDto);
-    }
+  @Post()
+  createSale(@Body() createSaleDto: CreateSaleDto) {
+    return this.salesService.createSale(createSaleDto);
+  }
 }

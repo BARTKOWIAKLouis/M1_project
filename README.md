@@ -5,11 +5,12 @@
     ! Si cela ne marche pas et que le projet est enregistré dans votre OneDrive, passez en local !
 
 ## Group :
- - Bartkowiak Louis
- - Rouzé Capucine
- - Obert Quentin
- - Cadilhac Alexandre
- - Sato Rintaro
+
+- Bartkowiak Louis
+- Rouzé Capucine
+- Obert Quentin
+- Cadilhac Alexandre
+- Sato Rintaro
 
 ## Tasks :
 
@@ -24,7 +25,9 @@
 ## Get started :
 
 ### Nest API
+
 Open a terminal and use these commands to launch the backend server
+
 ```bash
 > cd nest-api
 > npm install
@@ -32,7 +35,9 @@ Open a terminal and use these commands to launch the backend server
 ```
 
 ### React application
+
 In another terminal use these commands to launch the frontend server
+
 ```bash
 > cd react-app
 > npm install

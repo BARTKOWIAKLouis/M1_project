@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsInt, Min, Max} from 'class-validator';
+import { IsOptional, IsString, IsInt, Min, Max } from 'class-validator';
 
 export class CreateAuthorDto {
   @IsString()
@@ -8,7 +8,7 @@ export class CreateAuthorDto {
   lastName: string;
 }
 
-export class UpdateAuthorDto{
+export class UpdateAuthorDto {
   @IsString()
   @IsOptional()
   firstName: string;
@@ -18,18 +18,17 @@ export class UpdateAuthorDto{
   lastName: string;
 }
 
-export class GetAuthorsDto{
-      @IsInt()
-      @Min(1)
-      @Max(100)
-      limit: number;
-      
-      @IsInt()
-      @Min(0)
-      offset: number;
-      
-      @IsString()
-      @IsOptional()
-      
-      sort?: string;
+export class GetAuthorsDto {
+  @IsInt()
+  @Min(1)
+  @Max(100)
+  limit: number;
+
+  @IsInt()
+  @Min(0)
+  offset: number;
+
+  @IsString()
+  @IsOptional()
+  sort?: string;
 }

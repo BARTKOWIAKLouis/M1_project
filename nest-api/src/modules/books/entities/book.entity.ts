@@ -28,6 +28,6 @@ export class BookEntity extends BaseEntity {
   @JoinColumn({ name: 'author_id' })
   author: AuthorEntity;
 
-  @Column({name : 'picture', type: 'varchar', nullable: true})
+  @Column({ name: 'picture', type: 'varchar', nullable: true })
   picture?: string;
 }

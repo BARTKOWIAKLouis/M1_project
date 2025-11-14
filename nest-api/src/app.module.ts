@@ -8,7 +8,13 @@ import { ClientModule } from './modules/clients/client.module';
 import { SalesModule } from './modules/sales/sales.module';
 
 @Module({
-  imports: [DatabaseModule, AuthorModule, BookModule, ClientModule, SalesModule],
+  imports: [
+    DatabaseModule,
+    AuthorModule,
+    BookModule,
+    ClientModule,
+    SalesModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
