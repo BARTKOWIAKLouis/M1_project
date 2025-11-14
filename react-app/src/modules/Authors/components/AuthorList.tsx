@@ -1,11 +1,20 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthorsProviders } from '../providers/useAuthorsProviders'
 import { AuthorListItem } from './AuthorListItem'
 import { CreateAuthorModal } from './CreateAuthorModal'
+import SearchBar from '../../SearchBar'
 
 export function AuthorList() {
   const { authorList, loadAuthors, createAuthor, deleteAuthor } =
     useAuthorsProviders()
+
+  const [query, setQuery] = useState('')
+  const filteredList = (authorList ?? []).filter(item => {
+    const name = `${item.Authors.firstName} ${item.Authors.lastName}`.toLowerCase()
+    const q = query.trim().toLowerCase()
+    if (!q) return true
+    return name.includes(q)
+  })
 
   useEffect(() => {
     loadAuthors()
@@ -48,8 +57,14 @@ export function AuthorList() {
 }
 `}
       </style>
+      <div style={{ display: 'flex',padding:'0 2em', justifyContent:'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholder="Search by name"
+        />
       <CreateAuthorModal onCreate={createAuthor} />
-
+      </div>
       {/* List all books items with its number of sales */}
       <div
         style={{
@@ -68,14 +83,18 @@ export function AuthorList() {
         }}
         className="scrollable-books"
       >
-        {authorList.map(item => (
-          <AuthorListItem
-            key={item.Authors.id}
-            author={item.Authors}
-            Number_of_Books={item.Number_of_Books}
-            onDelete={deleteAuthor}
-          />
-        ))}
+        { filteredList.length != 0 ? (
+          filteredList.map(item => (
+            <AuthorListItem
+              key={item.Authors.id}
+              author={item.Authors}
+              Number_of_Books={item.Number_of_Books}
+              onDelete={deleteAuthor}
+            />
+        ))
+        ) : (
+          <div style={{ margin: '2em auto' }}>No authors founds</div>
+        )}
       </div>
     </>
   )
