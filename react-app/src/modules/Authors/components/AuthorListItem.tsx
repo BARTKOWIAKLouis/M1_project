@@ -41,7 +41,6 @@ export function AuthorListItem({
             alt="Author"
             style={{
               borderRadius: '100% ',
-              width: `${IMAGE_WIDTH}vw`,
               height: `${IMAGE_HEIGHT}vh`,
               objectFit: 'cover',
             }}

@@ -37,6 +37,40 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
 
   return (
     <>
+      <style>
+        {`
+        .ant-modal .ant-modal-content {
+          background-color: #F5F5DC;
+          color: #653239;
+
+          .ant-input {
+          border: none;
+          border-bottom: 2px solid #653239;
+          background-color: transparent;
+          color: #653239;
+          }
+          .ant-select-selector{
+          background-color: transparent !important;
+          }
+          .ant-input:hover {
+            color: #A9A9A9 !important;
+          }
+          .ant-select-selector:hover {
+            border-color: #A9A9A9 !important;
+          }
+          .ant-btn-variant-outlined:hover {
+              border-color: #A9A9A9 !important;
+              color: #A9A9A9 !important;
+          }
+          .ant-modal-title{
+            color: #653239  !important;
+            background-color: #F5F5DC !important;
+            font-weight: bold !important;
+            }
+
+        }
+        `}
+      </style>
       <Button
         icon={<EditOutlined style={{ fontSize: '1.5vw' }} />}
         style={{

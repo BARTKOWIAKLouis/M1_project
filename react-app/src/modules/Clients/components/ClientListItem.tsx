@@ -57,6 +57,7 @@ export function ClientListItem({
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              margin: 'auto',
             }}
           >
             <UserOutlined style={{ fontSize: '2.5vw', color: '#999' }} />

@@ -37,9 +37,7 @@ export class BookController {
   }
 
   @Get(':id')
-  public async getBook(
-    @Param('id') id: string,
-  ): Promise<{
+  public async getBook(@Param('id') id: string): Promise<{
     data: { book: BookModel; clients: ClientModel[]; number } | undefined;
   }> {
     const bookInfo = await this.bookService.getBookInfo(id);

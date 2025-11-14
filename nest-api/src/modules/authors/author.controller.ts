@@ -36,9 +36,7 @@ export class AuthorController {
   }
 
   @Get(':id')
-  async getAuthorInfo(
-    @Param('id') id: string,
-  ): Promise<{
+  async getAuthorInfo(@Param('id') id: string): Promise<{
     data:
       | {
           author: AuthorModel;

@@ -6,4 +6,3 @@ nest-api/db
 .gitattributes
 .editorconfig
 nest-api/src/routeTree.ts
-nest-api/db

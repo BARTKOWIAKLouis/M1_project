@@ -125,7 +125,7 @@ export function BookListItem({
         span={3}
         style={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           gap: '1vw',
         }}
       >

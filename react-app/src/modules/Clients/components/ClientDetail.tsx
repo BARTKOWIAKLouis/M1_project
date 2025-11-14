@@ -51,6 +51,7 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
           }
           .ant-modal-title{
             color: #653239  !important;
+            background-color: #F5F5DC;
             font-weight: bold !important;
             }
 

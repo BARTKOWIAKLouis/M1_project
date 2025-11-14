@@ -52,31 +52,31 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
         okButtonProps={{
           disabled: !firstName.trim() || !lastName.trim(),
         }}
-        title="Modifier l'auteur"
+        title="Edit Author"
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>
-            <label style={{ fontSize: '1.5vw' }}>Prénom :</label>
+            <label style={{ fontSize: '1.5vw' }}>FirstName :</label>
             <Input
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
-              placeholder="Prénom"
+              placeholder="First Name"
               style={{ fontSize: '1.2vw' }}
             />
           </div>
 
           <div>
-            <label style={{ fontSize: '1.5vw' }}>Nom :</label>
+            <label style={{ fontSize: '1.5vw' }}>LastName :</label>
             <Input
               value={lastName}
               onChange={e => setLastName(e.target.value)}
-              placeholder="Nom"
+              placeholder="Last Name"
               style={{ fontSize: '1.2vw' }}
             />
           </div>
 
           <div>
-            <label style={{ fontSize: '1.5vw' }}>Photo (URL) :</label>
+            <label style={{ fontSize: '1.5vw' }}>Picture (URL) :</label>
             <Input
               value={picture ?? ''}
               onChange={e => setPicture(e.target.value)}

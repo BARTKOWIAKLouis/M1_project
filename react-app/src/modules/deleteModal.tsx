@@ -16,19 +16,13 @@ export function DeleteModal({ id, onDelete }: deleteModalProps) {
 
   return (
     <>
-      {/* <style>
+      <style>
         {`
-        .ant-modal .ant-modal-content {
-          background-color: #E2D4BA;
-          color: #653239;
-
-          .ant-input {
-          border-bottom: 2px solid #653239;
-          background-color: transparent;
-          color: #653239;
-          }
+        .ant-modal-title, .ant-modal-header{
+          background-color: #F5F5DC;
+        }
         `}
-      </style> */}
+      </style>
       <Button type="primary" danger onClick={() => setIsOpen(true)}>
         <DeleteOutlined />
       </Button>

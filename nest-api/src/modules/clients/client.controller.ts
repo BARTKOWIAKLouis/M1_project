@@ -36,9 +36,7 @@ export class ClientController {
   }
 
   @Get(':id')
-  async getClientInfo(
-    @Param('id') id: string,
-  ): Promise<{
+  async getClientInfo(@Param('id') id: string): Promise<{
     data:
       | { client: ClientModel; purchasedBooks: BookModel[]; number }
       | undefined;
