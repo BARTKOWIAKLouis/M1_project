@@ -68,7 +68,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                 gap: '1vw',
               }}
             >
-              <Link to={authorsRoute.to}>
+              <Link to="..">
                 <ArrowLeftOutlined
                   style={{ color: 'white', fontSize: '2vw' }}
                 />

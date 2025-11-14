@@ -40,7 +40,7 @@ export function ClientListItem({
             src={client.picture}
             alt="Client Avatar"
             style={{
-              borderRadius: '3px',
+              borderRadius: '100%',
               width: `${IMAGE_WIDTH}vw`,
               height: `${IMAGE_HEIGHT}vh`,
               objectFit: 'cover',

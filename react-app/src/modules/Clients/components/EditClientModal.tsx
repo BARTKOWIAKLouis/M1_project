@@ -13,6 +13,7 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
   const [firstName, setFirstName] = useState(client.firstName)
   const [lastName, setLastName] = useState(client.lastName)
   const [email, setEmail] = useState(client.email)
+  const [picture, setPicture] = useState<string | undefined>(client.picture)
 
   const onClose = () => {
     setFirstName(client.firstName)
@@ -79,6 +80,15 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
               value={email ?? ''}
               onChange={e => setEmail(e.target.value)}
               style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
+            />
+          </div>
+          <div>
+            <label style={{ fontSize: '1vw' }}>Picture (URL) :</label>
+            <Input
+              value={picture ?? ''}
+              onChange={e => setPicture(e.target.value)}
+              placeholder="https://..."
+              style={{ fontSize: '1.2vw' }}
             />
           </div>
         </Space>

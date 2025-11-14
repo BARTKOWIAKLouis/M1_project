@@ -3,7 +3,6 @@ import { useClientDetailProvider } from '../providers/useClientDetailProvider'
 import { useEffect, useState } from 'react'
 import { ArrowLeftOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
-import { Route as clientsRoute } from '../../../routes/clients'
 import { EditClientModal } from './EditClientModal'
 
 interface ClientDetailsProps {
@@ -69,7 +68,7 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
                 gap: '1vw',
               }}
             >
-              <Link to={clientsRoute.to}>
+              <Link to="..">
                 <ArrowLeftOutlined
                   style={{ color: 'white', fontSize: '2vw' }}
                 />
