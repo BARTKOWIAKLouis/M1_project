@@ -29,6 +29,13 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
   }, [isOpen])
   return (
     <>
+      <style>
+        {`
+        .ant-modal .ant-modal-content {
+          background-color: #F5F5DC !important;
+          color: #653239 ! important;
+        `}
+      </style>
       <Button
         icon={<EditOutlined style={{ fontSize: '20px' }} />}
         style={{
