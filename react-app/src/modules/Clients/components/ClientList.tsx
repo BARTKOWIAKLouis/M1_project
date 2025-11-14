@@ -20,11 +20,14 @@ export function ClientList() {
         style={{
           padding: '0 .5rem',
           marginTop: '20px',
-          height: '45vh',
+          height: '70vh',
           overflowY: 'auto',
+          paddingLeft: '30px',
+          paddingRight: '20px',
           scrollbarWidth: 'thin',
           scrollbarColor: '#b37a7a transparent',
-          width: '100%',
+          width: '95%',
+          marginLeft: '0.5%',
           backgroundColor: 'rgba(255, 255, 255, 0.27)',
           borderRadius: '8px',
         }}
