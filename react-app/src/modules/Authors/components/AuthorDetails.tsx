@@ -3,7 +3,6 @@ import { useAuthorDetailProvider } from '../providers/useAuthorDetailProvider'
 import { useEffect, useState } from 'react'
 import { ArrowLeftOutlined, BookOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
-import { Route as authorsRoute } from '../../../routes/authors'
 import { EditAuthorModal } from './AuthorEditModal'
 
 interface AuthorDetailsProps {

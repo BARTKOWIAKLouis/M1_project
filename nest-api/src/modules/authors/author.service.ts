@@ -3,7 +3,6 @@ import {
   AuthorModel,
   CreateAuthorModel,
   FilterAuthorModel,
-  GetAuthorsModel,
   UpdateAuthorModel,
 } from './author.model';
 import { AuthorRepository } from './author.repository';

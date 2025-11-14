@@ -8,7 +8,6 @@ import {
 import { AuthorEntity, AuthorId } from './author.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SalesRepository } from '../sales/sales.repository';
 
 @Injectable()
 export class AuthorRepository {
