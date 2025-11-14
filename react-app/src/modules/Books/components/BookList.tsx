@@ -1,10 +1,21 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useBookProvider } from '../providers/useBookProvider'
 import { BookListItem } from './BookListItem'
 import { CreateBookModal } from './CreateBookModal'
+import SearchBar from '../../SearchBar'
 
 export function BookList() {
   const { bookList, loadBooks, deleteBook, createBook } = useBookProvider()
+  const [query, setQuery] = useState('')
+
+  const filteredList = (bookList ?? []).filter(item => {
+    const title = item.Books.title?.toLowerCase() ?? ''
+    const author =
+      `${item.Books.author.firstName} ${item.Books.author.lastName}`.toLowerCase()
+    const q = query.trim().toLowerCase()
+    if (!q) return true
+    return title.includes(q) || author.includes(q)
+  })
 
   useEffect(() => {
     loadBooks()
@@ -43,8 +54,22 @@ export function BookList() {
           }
         `}
       </style>
-
-      <CreateBookModal onCreate={createBook} />
+      <div
+        style={{
+          display: 'flex',
+          padding: '0 2em',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '1rem',
+        }}
+      >
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholder="Search by title or author"
+        />
+        <CreateBookModal onCreate={createBook} />
+      </div>
 
       <div
         style={{
@@ -61,14 +86,18 @@ export function BookList() {
         }}
         className="scrollable-books"
       >
-        {bookList.map(item => (
-          <BookListItem
-            key={item.Books.id}
-            book={item.Books}
-            sales_count={item.Sales_count}
-            onDelete={deleteBook}
-          />
-        ))}
+        {filteredList.length != 0 ? (
+          filteredList.map(item => (
+            <BookListItem
+              key={item.Books.id}
+              book={item.Books}
+              sales_count={item.Sales_count}
+              onDelete={deleteBook}
+            />
+          ))
+        ) : (
+          <div style={{ margin: '2em auto' }}>No books found</div>
+        )}
       </div>
     </>
   )

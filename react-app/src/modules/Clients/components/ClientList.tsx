@@ -1,20 +1,44 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useClientProvider } from '../providers/useClientProvider'
 import { ClientListItem } from './ClientListItem'
 import { CreateClientModal } from './CreateClientModal'
+import SearchBar from '../../SearchBar'
 
 export function ClientList() {
   const { clientList, loadClients, createClient, deleteClient } =
     useClientProvider()
+  const [query, setQuery] = useState('')
 
+  const filteredList = (clientList ?? []).filter(item => {
+    const name =
+      `${item.client.firstName} ${item.client.lastName}`.toLowerCase()
+    const q = query.trim().toLowerCase()
+    if (!q) return true
+    return name.includes(q)
+  })
   useEffect(() => {
     loadClients()
   }, [])
 
   return (
     <>
-      <CreateClientModal onCreate={createClient} />
-
+      <div
+        style={{
+          display: 'flex',
+          padding: '0 2em',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '1rem',
+        }}
+      >
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholder="Search by name"
+        />
+        <CreateClientModal onCreate={createClient} />
+      </div>
+      {/* List all clients items with its number of sales */}
       <div
         style={{
           padding: '0 1vw',
@@ -32,8 +56,8 @@ export function ClientList() {
         }}
         className="scrollable-books"
       >
-        {clientList && clientList.length > 0 ? (
-          clientList.map(item => (
+        {filteredList.length != 0 ? (
+          filteredList.map(item => (
             <ClientListItem
               key={item.client.id}
               client={item.client}
@@ -42,11 +66,7 @@ export function ClientList() {
             />
           ))
         ) : (
-          <div
-            style={{ textAlign: 'center', marginTop: '2vh', color: 'white' }}
-          >
-            No clients found
-          </div>
+          <div style={{ margin: '2em auto' }}>No clients founds</div>
         )}
       </div>
     </>

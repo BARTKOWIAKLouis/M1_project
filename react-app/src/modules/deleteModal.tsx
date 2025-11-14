@@ -39,6 +39,9 @@ export function DeleteModal({ id, onDelete }: deleteModalProps) {
           onDelete(id)
           onClose()
         }}
+        okText="Delete"
+        okButtonProps={{ danger: true }}
+        title="Delete Item"
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <span>Are you sure you want to delete this item ?</span>

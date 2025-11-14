@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router'
 import { Route as indexRoute } from './routes/index'
-import { Route as aboutRoute } from './routes/about'
 import { Route as booksRoute } from './routes/books'
 import { Route as authorsRoute } from './routes/authors'
 import { Route as clientsRoute } from './routes/clients'
@@ -8,7 +7,6 @@ import { Space, type MenuProps } from 'antd'
 import {
   BookOutlined,
   HomeOutlined,
-  InfoOutlined,
   UserOutlined,
   SignatureOutlined,
 } from '@ant-design/icons'
@@ -39,11 +37,6 @@ export function Layout({ children }: LayoutProps) {
       label: <Link to={clientsRoute.to}>Clients</Link>,
       key: 'clients',
       icon: <UserOutlined />,
-    },
-    {
-      label: <Link to={aboutRoute.to}>About</Link>,
-      key: 'about',
-      icon: <InfoOutlined />,
     },
   ]
 
