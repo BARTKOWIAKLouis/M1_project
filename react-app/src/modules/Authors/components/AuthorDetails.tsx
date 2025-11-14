@@ -100,7 +100,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
           <Col span={16}>
             <Space direction="vertical" size="large">
               <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
-                {authorInfo?.author.firstName} {authorInfo?.author.lastName} {' '}
+                {authorInfo?.author.firstName} {authorInfo?.author.lastName}{' '}
                 {authorInfo && (
                   <EditAuthorModal
                     author={authorInfo.author}
@@ -121,15 +121,15 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
         </div>
         <div
           style={{
+            padding: '0 .5rem',
             marginTop: '20px',
-            maxHeight: '250px',
+            height: '45vh',
             overflowY: 'auto',
-            paddingLeft: '30px',
-            paddingRight: '20px',
             scrollbarWidth: 'thin',
             scrollbarColor: '#b37a7a transparent',
-            width: '95%',
-            marginLeft: '0',
+            width: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.27)',
+            borderRadius: '8px',
           }}
           className="scrollable-books"
         >
@@ -148,6 +148,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                     borderRadius: '10px',
                     backgroundColor: '#653239',
                     padding: '.25rem 1rem',
+                    marginTop: '0.5%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -156,7 +157,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                     cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'scale(1.02)'
+                    e.currentTarget.style.transform = 'scale(1.006)'
                     e.currentTarget.style.backgroundColor = '#7d3a43'
                   }}
                   onMouseLeave={e => {

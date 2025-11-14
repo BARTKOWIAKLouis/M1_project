@@ -5,13 +5,18 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from '@tanstack/react-router'
 import { Route as clientsRoute } from '../../../routes/clients'
 import { EditClientModal } from './EditClientModal'
+import { useState } from 'react'
+import { UserOutlined } from '@ant-design/icons'
 
 interface ClientDetailsProps {
   id: string
 }
 
 export const ClientDetails = ({ id }: ClientDetailsProps) => {
-  const { isLoading, clientInfo, loadClient, updateclient } = useClientDetailProvider(id)
+  const { isLoading, clientInfo, loadClient, updateclient } =
+    useClientDetailProvider(id)
+  const [imageError, setImageError] = useState(false)
+  const IMAGE_WIDTH = 65
 
   useEffect(() => {
     loadClient()
@@ -66,17 +71,45 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
         </Link>
         <Row gutter={[32, 32]}>
           <Col span={8}>
-            <Image
-              src={clientInfo?.client.picture}
-              alt="Client Picture"
-              width={300}
-              style={{ borderRadius: '8px' }}
-            />
+            {clientInfo?.client.picture && !imageError ? (
+              <Image
+                src={clientInfo?.client.picture}
+                alt="Book Cover"
+                style={{
+                  borderRadius: '100%',
+                  width: `${IMAGE_WIDTH}px`,
+                  margin: '0 0 0 60px',
+                  objectFit: 'cover',
+                }}
+                preview={false}
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div
+                style={{
+                  width: `${IMAGE_WIDTH}px`,
+                  borderRadius: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '0 0 0 60px',
+                }}
+              >
+                <UserOutlined style={{ fontSize: '32px', color: '#999' }} />
+              </div>
+            )}
           </Col>
           <Col span={16}>
             <Space direction="vertical" size="large">
               <Typography.Title level={1} style={{ color: 'white', margin: 0 }}>
-                {clientInfo?.client.firstName} {clientInfo?.client.lastName}
+                {clientInfo?.client.firstName} {clientInfo?.client.lastName}{' '}
+                {''}
+                {clientInfo && (
+                  <EditClientModal
+                    client={clientInfo.client}
+                    onUpdate={updateclient}
+                  />
+                )}
               </Typography.Title>
               <Typography.Title level={2} style={{ color: 'white', margin: 0 }}>
                 {clientInfo?.client.email}
@@ -84,25 +117,24 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
             </Space>
           </Col>
         </Row>
-        <div style={{ marginTop: '40px' }}>
+        <div>
           <Typography.Title level={4} style={{ color: 'white' }}>
             Books purchased by this client:
           </Typography.Title>
-
-          <div
-            style={{
-              marginTop: '20px',
-              maxHeight: '250px',
-              overflowY: 'auto',
-              paddingLeft: '30px',
-              paddingRight: '20px',
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#b37a7a transparent',
-              width: '95%',
-              marginLeft: '0',
-            }}
-            className="scrollable-books"
-          ></div>
+        </div>
+        <div
+          style={{
+            padding: '0 .5rem',
+            height: '40vh',
+            overflowY: 'auto',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#b37a7a transparent',
+            width: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.27)',
+            borderRadius: '8px',
+          }}
+          className="scrollable-books"
+        >
           <Space direction="vertical" style={{ width: '100%' }}>
             {clientInfo?.purchasedBooks.length === 0 ? (
               <Typography.Text style={{ color: 'white' }}>
@@ -118,6 +150,7 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
                     borderRadius: '10px',
                     backgroundColor: '#653239',
                     padding: '.25rem 1rem',
+                    marginTop: '0.5%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -126,7 +159,7 @@ export const ClientDetails = ({ id }: ClientDetailsProps) => {
                     cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'scale(1.02)'
+                    e.currentTarget.style.transform = 'scale(1.006)'
                     e.currentTarget.style.backgroundColor = '#7d3a43'
                   }}
                   onMouseLeave={e => {

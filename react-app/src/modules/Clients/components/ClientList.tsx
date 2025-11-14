@@ -19,9 +19,16 @@ export function ClientList() {
       <div
         style={{
           padding: '0 .5rem',
-          backgroundColor: 'white',
           marginTop: '20px',
+          height: '45vh',
+          overflowY: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#b37a7a transparent',
+          width: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.27)',
+          borderRadius: '8px',
         }}
+        className="scrollable-books"
       >
         {clientList ? (
           clientList.map(item => (

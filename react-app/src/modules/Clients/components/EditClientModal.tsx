@@ -14,7 +14,7 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
   const [lastName, setLastName] = useState(client.lastName)
   const [email, setEmail] = useState(client.email)
 
-  const onClose = () =>{
+  const onClose = () => {
     setFirstName(client.firstName)
     setLastName(client.lastName)
     setEmail(client.email)
@@ -22,9 +22,9 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
   }
   useEffect(() => {
     if (isOpen) {
-        setFirstName(client.firstName)
-        setLastName(client.lastName)
-        setEmail(client.email)
+      setFirstName(client.firstName)
+      setLastName(client.lastName)
+      setEmail(client.email)
     }
   }, [isOpen])
   return (
@@ -43,8 +43,8 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
         open={isOpen}
         onCancel={onClose}
         onOk={async () => {
-            await onUpdate(client.id, { firstName, lastName, email })
-            onClose()
+          await onUpdate(client.id, { firstName, lastName, email })
+          onClose()
         }}
         okButtonProps={{
           disabled: !firstName || lastName == null,
@@ -54,7 +54,10 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>
             <label>FirstName :</label>
-            <Input value={firstName} onChange={e => setFirstName(e.target.value)} />
+            <Input
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            />
           </div>
 
           <div>
@@ -76,5 +79,3 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
     </>
   )
 }
-
-

@@ -213,9 +213,11 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
                             cursor: 'pointer',
                           }}
                           onMouseEnter={e => {
+                            e.currentTarget.style.transform = 'scale(1.001)'
                             e.currentTarget.style.backgroundColor = '#7d3a43'
                           }}
                           onMouseLeave={e => {
+                            e.currentTarget.style.transform = 'scale(1)'
                             e.currentTarget.style.backgroundColor = '#653239'
                           }}
                         >

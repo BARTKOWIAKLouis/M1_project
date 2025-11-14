@@ -62,7 +62,9 @@ export function AuthorList() {
           scrollbarWidth: 'thin',
           scrollbarColor: '#b37a7a transparent',
           width: '95%',
-          marginLeft: '0',
+          marginLeft: '0.5%',
+          backgroundColor: 'rgba(255, 255, 255, 0.27)',
+          borderRadius: '8px',
         }}
         className="scrollable-books"
       >
