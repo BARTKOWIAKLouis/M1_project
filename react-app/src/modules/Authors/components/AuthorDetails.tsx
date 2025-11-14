@@ -209,7 +209,7 @@ export const AuthorDetails = ({ id }: AuthorDetailsProps) => {
                 >
                   {authorInfo?.totalCount === 0 ? (
                     <Typography.Text style={{ color: 'white' }}>
-                      This author hasn't written any books.
+                      This author hasn&apos;t written any books.
                     </Typography.Text>
                   ) : (
                     authorInfo?.writtenBooks.map(book => (
