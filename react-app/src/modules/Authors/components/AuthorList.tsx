@@ -15,58 +15,59 @@ export function AuthorList() {
     <>
       <style>
         {`
-      .scrollable-books::-webkit-scrollbar {
-  width: 8px;
-}
+      .scrollable-authors::-webkit-scrollbar {
+        width: 0.8vw;
+      }
 
-.scrollable-books::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  transition: background-color 0.3s;
-}
+      .scrollable-authors::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 1vw;
+        transition: background-color 0.3s;
+      }
 
-.scrollable-books::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-}
+      .scrollable-authors::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+      }
 
-.scrollable-books::-webkit-scrollbar-track {
-  background: transparent;
-}
-  .scrollable-books {
-  position: relative;
-}
+      .scrollable-authors::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-.scrollable-books::after {
-  content: '';
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 24px;
-  background: linear-gradient(to bottom, transparent, rgba(101, 50, 57, 0.9));
-  pointer-events: none;
-}
-`}
+      .scrollable-authors {
+        position: relative;
+      }
+
+      .scrollable-authors::after {
+        content: '';
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2vh;
+        background: linear-gradient(to bottom, transparent, rgba(101, 50, 57, 0.9));
+        pointer-events: none;
+      }
+      `}
       </style>
+
       <CreateAuthorModal onCreate={createAuthor} />
 
-      {/* List all books items with its number of sales */}
       <div
         style={{
-          padding: '0 .5rem',
-          marginTop: '20px',
+          padding: '0 1vw',
+          marginTop: '2vh',
           height: '70vh',
           overflowY: 'auto',
-          paddingLeft: '30px',
-          paddingRight: '20px',
+          paddingLeft: '2vw',
+          paddingRight: '2vw',
           scrollbarWidth: 'thin',
           scrollbarColor: '#b37a7a transparent',
           width: '95%',
           marginLeft: '0.5%',
           backgroundColor: 'rgba(255, 255, 255, 0.27)',
-          borderRadius: '8px',
+          borderRadius: '1vw',
         }}
-        className="scrollable-books"
+        className="scrollable-authors"
       >
         {authorList.map(item => (
           <AuthorListItem

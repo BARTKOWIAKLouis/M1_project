@@ -15,25 +15,24 @@ export function ClientList() {
     <>
       <CreateClientModal onCreate={createClient} />
 
-      {/* List all clients items with its number of sales */}
       <div
         style={{
-          padding: '0 .5rem',
-          marginTop: '20px',
+          padding: '0 1vw',
+          marginTop: '2vh',
           height: '70vh',
           overflowY: 'auto',
-          paddingLeft: '30px',
-          paddingRight: '20px',
+          paddingLeft: '2vw',
+          paddingRight: '2vw',
           scrollbarWidth: 'thin',
           scrollbarColor: '#b37a7a transparent',
-          width: '95%',
-          marginLeft: '0.5%',
+          width: '95vw',
+          marginLeft: '.5vw',
           backgroundColor: 'rgba(255, 255, 255, 0.27)',
-          borderRadius: '8px',
+          borderRadius: '1vw',
         }}
         className="scrollable-books"
       >
-        {clientList ? (
+        {clientList && clientList.length > 0 ? (
           clientList.map(item => (
             <ClientListItem
               key={item.client.id}
@@ -43,7 +42,11 @@ export function ClientList() {
             />
           ))
         ) : (
-          <div style={{ margin: 'auto' }}>No clients founds</div>
+          <div
+            style={{ textAlign: 'center', marginTop: '2vh', color: 'white' }}
+          >
+            No clients found
+          </div>
         )}
       </div>
     </>

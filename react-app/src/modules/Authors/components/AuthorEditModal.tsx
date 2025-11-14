@@ -29,15 +29,10 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
     }
   }, [isOpen])
 
-  //   const onSave = () => {
-  //     onUpdate(author.id, { firstName, lastName, picture })
-  //     onClose()
-  //   }
-
   return (
     <>
       <Button
-        icon={<EditOutlined style={{ fontSize: '20px' }} />}
+        icon={<EditOutlined style={{ fontSize: '2vw' }} />}
         style={{
           backgroundColor: 'transparent',
           borderColor: 'transparent',
@@ -61,29 +56,32 @@ export function EditAuthorModal({ author, onUpdate }: EditAuthorModalProps) {
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>
-            <label>Prénom :</label>
+            <label style={{ fontSize: '1.5vw' }}>Prénom :</label>
             <Input
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
               placeholder="Prénom"
+              style={{ fontSize: '1.2vw' }}
             />
           </div>
 
           <div>
-            <label>Nom :</label>
+            <label style={{ fontSize: '1.5vw' }}>Nom :</label>
             <Input
               value={lastName}
               onChange={e => setLastName(e.target.value)}
               placeholder="Nom"
+              style={{ fontSize: '1.2vw' }}
             />
           </div>
 
           <div>
-            <label>Photo (URL) :</label>
+            <label style={{ fontSize: '1.5vw' }}>Photo (URL) :</label>
             <Input
               value={picture ?? ''}
               onChange={e => setPicture(e.target.value)}
               placeholder="https://..."
+              style={{ fontSize: '1.2vw' }}
             />
           </div>
         </Space>

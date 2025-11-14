@@ -138,8 +138,6 @@ export const BookDetails = ({ id }: BookDetailsProps) => {
             </Col>
           </Row>
         </Col>
-
-        {/* RIGHT COLUMN = Clients */}
         <Col span={8}>
           {bookInfo && (
             <div

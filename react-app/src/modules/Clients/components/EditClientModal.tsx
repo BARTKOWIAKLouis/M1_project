@@ -20,6 +20,7 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
     setEmail(client.email)
     setIsOpen(false)
   }
+
   useEffect(() => {
     if (isOpen) {
       setFirstName(client.firstName)
@@ -27,24 +28,18 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
       setEmail(client.email)
     }
   }, [isOpen])
+
   return (
     <>
-      <style>
-        {`
-        .ant-modal .ant-modal-content {
-          background-color: #F5F5DC !important;
-          color: #653239 ! important;
-        `}
-      </style>
       <Button
-        icon={<EditOutlined style={{ fontSize: '20px' }} />}
+        icon={<EditOutlined style={{ fontSize: '1.5vw' }} />}
         style={{
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           color: '#653239',
         }}
         onClick={() => setIsOpen(true)}
-      ></Button>
+      />
 
       <Modal
         open={isOpen}
@@ -54,31 +49,36 @@ export function EditClientModal({ client, onUpdate }: EditClientModalProps) {
           onClose()
         }}
         okButtonProps={{
-          disabled: !firstName || lastName == null,
+          disabled: !firstName || !lastName,
         }}
         title="Modify Client"
+        bodyStyle={{ padding: '2vh 2vw' }}
       >
-        <Space direction="vertical" style={{ width: '100%' }}>
+        <Space direction="vertical" style={{ width: '100%', gap: '1.5vh' }}>
           <div>
-            <label>FirstName :</label>
+            <label style={{ fontSize: '1vw' }}>First Name:</label>
             <Input
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
           </div>
 
           <div>
-            <label>LastName :</label>
+            <label style={{ fontSize: '1vw' }}>Last Name:</label>
             <Input
               value={lastName}
               onChange={e => setLastName(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
           </div>
+
           <div>
-            <label>Email</label>
+            <label style={{ fontSize: '1vw' }}>Email:</label>
             <Input
               value={email ?? ''}
               onChange={e => setEmail(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
           </div>
         </Space>

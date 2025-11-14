@@ -9,88 +9,116 @@ interface CreateClientModalProps {
 
 export function CreateClientModal({ onCreate }: CreateClientModalProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [firstName, setfirstName] = useState('')
-  const [lastName, setlastName] = useState('')
-  const [email, setemail] = useState<undefined | string>(undefined)
-  const [picture, setPicture] = useState<undefined | string>(undefined)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState<string | undefined>(undefined)
+  const [picture, setPicture] = useState<string | undefined>(undefined)
 
   const onClose = () => {
-    setfirstName('')
-    setlastName('')
+    setFirstName('')
+    setLastName('')
+    setEmail(undefined)
+    setPicture(undefined)
     setIsOpen(false)
   }
 
   return (
     <>
+      <style>
+        {`
+      .ant-modal .ant-modal-content {
+          background-color: #F5F5DC;
+          color: #653239;
+
+          .ant-input {
+          border: none;
+          border-bottom: 2px solid #653239;
+          background-color: transparent;
+          color: #653239;
+          }
+          .ant-select-selector{
+          background-color: transparent !important;
+          }
+          .ant-input:hover {
+            color: #A9A9A9 !important;
+          }
+          .ant-select-selector:hover {
+            border-color: #A9A9A9 !important;
+          }
+          .ant-btn-variant-outlined:hover {
+              border-color: #A9A9A9 !important;
+              color: #A9A9A9 !important;
+          }
+        }
+      `}
+      </style>
       <Button
         icon={<PlusOutlined />}
         style={{
           backgroundColor: 'white',
           borderColor: '#653239',
           color: '#653239',
+          fontSize: '1vw',
+          padding: '0.5vh 1vw',
         }}
         type="primary"
         onClick={() => setIsOpen(true)}
       >
         Add Client
       </Button>
+
       <Modal
         open={isOpen}
         onCancel={onClose}
         onOk={() => {
-          onCreate({
-            firstName,
-            lastName,
-            email,
-            picture
-
-        })
+          onCreate({ firstName, lastName, email, picture })
           onClose()
         }}
         okButtonProps={{
           disabled: !firstName || !lastName,
         }}
+        bodyStyle={{ padding: '2vh 2vw' }}
       >
-        <Space direction="vertical" style={{ width: '100%' }}>
-          <span>
-            <p>FirstName :</p>
+        <Space direction="vertical" style={{ width: '100%', gap: '1.5vh' }}>
+          <div>
+            <label style={{ fontSize: '1vw' }}>First Name:</label>
             <Input
-              type="text"
-              placeholder="firstName"
+              placeholder="First Name"
               value={firstName}
-              onChange={e => setfirstName(e.target.value)}
+              onChange={e => setFirstName(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
-          </span>
+          </div>
 
-          <span>
-            <p>LastName :</p>
+          <div>
+            <label style={{ fontSize: '1vw' }}>Last Name:</label>
             <Input
-              type="text"
-              placeholder="lastName"
+              placeholder="Last Name"
               value={lastName}
-              onChange={e => setlastName(e.target.value)}
+              onChange={e => setLastName(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
-          </span>
+          </div>
 
-          <span>
-            <p>Email :</p>
+          <div>
+            <label style={{ fontSize: '1vw' }}>Email:</label>
             <Input
-              type="text"
-              placeholder="email"
+              placeholder="Email"
               value={email}
-              onChange={e => setemail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
-          </span>
+          </div>
 
-          <span>
-            <p>Picture :</p>
+          <div>
+            <label style={{ fontSize: '1vw' }}>Picture URL:</label>
             <Input
-              type="text"
               placeholder="Link Picture"
               value={picture}
               onChange={e => setPicture(e.target.value)}
+              style={{ fontSize: '1vw', padding: '0.5vh 0.5vw' }}
             />
-          </span>
+          </div>
         </Space>
       </Modal>
     </>

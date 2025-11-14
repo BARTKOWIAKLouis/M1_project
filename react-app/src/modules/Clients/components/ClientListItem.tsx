@@ -17,32 +17,33 @@ export function ClientListItem({
   onDelete,
 }: ClientListItemProps) {
   const [imageError, setImageError] = useState(false)
-  const IMAGE_WIDTH = 30
-  const IMAGE_HEIGHT = 45
+  const IMAGE_WIDTH = 4
+  const IMAGE_HEIGHT = 6
+
   return (
     <Row
       style={{
         width: '100%',
-        height: '50px',
-        borderRadius: '10px',
+        height: '9vh',
+        borderRadius: '1vw',
         backgroundColor: '#653239',
-        margin: '1rem 0',
-        padding: '.25rem',
+        margin: '2vh 0',
+        padding: '0.5vh 1vw',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
       }}
     >
-      <Col span={1}>
+      <Col span={3}>
         {client.picture && !imageError ? (
           <Image
             src={client.picture}
-            alt="Book Cover"
+            alt="Client Avatar"
             style={{
               borderRadius: '3px',
-              width: `${IMAGE_WIDTH}px`,
-              height: `${IMAGE_HEIGHT}px`,
-              margin: '0 0 0 60px',
-              objectFit: 'cover', // 👈 garde le bon ratio sans déformer l’image
+              width: `${IMAGE_WIDTH}vw`,
+              height: `${IMAGE_HEIGHT}vh`,
+              objectFit: 'cover',
             }}
             preview={false}
             onError={() => setImageError(true)}
@@ -50,20 +51,20 @@ export function ClientListItem({
         ) : (
           <div
             style={{
-              width: `${IMAGE_WIDTH}px`,
-              height: `${IMAGE_HEIGHT}px`,
+              width: `${IMAGE_WIDTH}vw`,
+              height: `${IMAGE_HEIGHT}vh`,
               borderRadius: '3px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: '0 0 0 60px',
             }}
           >
-            <UserOutlined style={{ fontSize: '32px', color: '#999' }} />
+            <UserOutlined style={{ fontSize: '2.5vw', color: '#999' }} />
           </div>
         )}
       </Col>
-      <Col span={10} style={{ margin: 'auto 0' }}>
+
+      <Col span={10} style={{ display: 'flex', alignItems: 'center' }}>
         <Link
           to={`/clients/$clientId`}
           params={{ clientId: client.id }}
@@ -71,22 +72,27 @@ export function ClientListItem({
             margin: 'auto 0',
             textAlign: 'left',
             color: 'white',
+            fontSize: '1.2vw',
+            textDecoration: 'bold',
           }}
         >
-          <span>
-            {client.firstName}- {client.lastName}
-          </span>
+          {client.firstName} {client.lastName}
         </Link>
       </Col>
-      <Col span={5} style={{ margin: 'auto 0' }}>
+
+      <Col
+        span={5}
+        style={{ display: 'flex', alignItems: 'center', fontSize: '1vw' }}
+      >
         Purchases: <strong>{purchaseCount}</strong>
       </Col>
+
       <Col
         span={3}
         style={{
           alignItems: 'right',
           display: 'flex',
-          gap: '.25rem',
+          gap: '0.5vw',
           margin: 'auto 0',
         }}
       >

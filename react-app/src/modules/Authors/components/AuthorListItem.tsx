@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import type { AuthorModel } from '../AuthorModel'
 import { Col, Row, Image } from 'antd'
 import { Link } from '@tanstack/react-router'
@@ -18,32 +17,32 @@ export function AuthorListItem({
   onDelete,
 }: AuthorListItemProps) {
   const [imageError, setImageError] = useState(false)
-  const IMAGE_WIDTH = 30
-  const IMAGE_HEIGHT = 45
+  const IMAGE_WIDTH = 2.5
+  const IMAGE_HEIGHT = 7
+
   return (
     <Row
       style={{
         width: '100%',
-        height: '50px',
-        borderRadius: '10px',
+        height: '9vh',
+        borderRadius: '1vw',
         backgroundColor: '#653239',
-        margin: '1rem 0',
-        padding: '.25rem',
+        margin: '2vh 0',
+        padding: '0.5vh 1vw',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
       }}
     >
-      <Col span={1}>
+      <Col span={2}>
         {author.picture && !imageError ? (
           <Image
             src={author.picture}
-            alt="Book Cover"
+            alt="Author"
             style={{
-              borderRadius: '3px',
-              width: `${IMAGE_WIDTH}px`,
-              height: `${IMAGE_HEIGHT}px`,
-              margin: '0 0 0 60px',
+              borderRadius: '100% ',
+              width: `${IMAGE_WIDTH}vw`,
+              height: `${IMAGE_HEIGHT}vh`,
               objectFit: 'cover',
             }}
             preview={false}
@@ -52,47 +51,54 @@ export function AuthorListItem({
         ) : (
           <div
             style={{
-              width: `${IMAGE_WIDTH}px`,
-              height: `${IMAGE_HEIGHT}px`,
-              borderRadius: '3px',
+              width: `${IMAGE_WIDTH}vw`,
+              height: `${IMAGE_HEIGHT}vh`,
+              borderRadius: '0.5vw',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: '0 0 0 60px',
+              margin: 'auto',
             }}
           >
-            <SignatureOutlined style={{ fontSize: '32px', color: '#999' }} />
+            <SignatureOutlined
+              style={{
+                fontSize: '2.5vw',
+                color: '#999',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            />
           </div>
         )}
       </Col>
-      <Col span={5} style={{ margin: 'auto 0' }}>
-        {
-          <Link
-            to={`/authors/$authorId`}
-            params={{ authorId: author.id }}
-            style={{
-              margin: 'auto 0',
-              textAlign: 'left',
-              color: 'white',
-            }}
-          >
-            <span style={{ fontWeight: 'bold' }}>
-              {author.firstName}
-              {author.lastName}
-            </span>
-          </Link>
-        }
+
+      <Col span={8} style={{ margin: 'auto 0' }}>
+        <Link
+          to={`/authors/$authorId`}
+          params={{ authorId: author.id }}
+          style={{
+            margin: 'auto 0',
+            textAlign: 'left',
+            color: 'white',
+            fontSize: '1.2vw',
+            fontWeight: 'bold',
+          }}
+        >
+          {author.firstName} {author.lastName}
+        </Link>
       </Col>
 
-      <Col span={3} style={{ margin: 'auto 0' }}>
-        Books written: <span>{String(Number_of_Books)}</span>
+      <Col span={5} style={{ margin: 'auto 0', fontSize: '1vw' }}>
+        Books written: <span>{Number_of_Books}</span>
       </Col>
+
       <Col
         span={3}
         style={{
           alignItems: 'right',
           display: 'flex',
-          gap: '.25rem',
+          gap: '0.5vw',
           margin: 'auto 0',
         }}
       >

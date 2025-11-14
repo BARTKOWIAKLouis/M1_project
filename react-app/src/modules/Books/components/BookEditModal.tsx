@@ -27,7 +27,6 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      // loadAuthors()
       setTitle(book.title)
       setYearPublished(book.yearPublished)
       setAuthorId(book.author.id)
@@ -39,14 +38,14 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
   return (
     <>
       <Button
-        icon={<EditOutlined style={{ fontSize: '20px' }} />}
+        icon={<EditOutlined style={{ fontSize: '1.5vw' }} />}
         style={{
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           color: '#653239',
         }}
         onClick={() => setIsOpen(true)}
-      ></Button>
+      />
 
       <Modal
         open={isOpen}
@@ -64,25 +63,31 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
           disabled: !title || yearPublished == null || !authorId,
         }}
         title="Modify Book"
+        width="40vw"
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>
-            <label>Title :</label>
-            <Input value={title} onChange={e => setTitle(e.target.value)} />
-          </div>
-
-          <div>
-            <label>Picture :</label>
+            <label style={{ fontSize: '1vw' }}>Title :</label>
             <Input
-              value={picture ?? ''}
-              onChange={e => setPicture(e.target.value)}
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              style={{ fontSize: '1vw' }}
             />
           </div>
 
           <div>
-            <label>Author :</label>
+            <label style={{ fontSize: '1vw' }}>Picture :</label>
+            <Input
+              value={picture ?? ''}
+              onChange={e => setPicture(e.target.value)}
+              style={{ fontSize: '1vw' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ fontSize: '1vw' }}>Author :</label>
             <Select
-              style={{ width: '100%' }}
+              style={{ width: '100%', fontSize: '1vw' }}
               options={authorList.map(a => ({
                 label: `${a.Authors.firstName} ${a.Authors.lastName}`,
                 value: a.Authors.id,
@@ -93,11 +98,12 @@ export function EditBookModal({ book, onUpdate }: EditBookModalProps) {
           </div>
 
           <div>
-            <label>Year Published :</label>
+            <label style={{ fontSize: '1vw' }}>Year Published :</label>
             <Input
               type="number"
               value={yearPublished ?? ''}
               onChange={e => setYearPublished(Number(e.target.value))}
+              style={{ fontSize: '1vw' }}
             />
           </div>
         </Space>
